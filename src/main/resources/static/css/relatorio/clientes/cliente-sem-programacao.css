@@ -1,0 +1,82 @@
+#conteudo{
+width: 1510px !important;
+}
+
+.calendar {
+display: flex;
+margin-bottom: 20px;
+margin-top: 14px;
+align-items: center;
+padding-left: -25px;
+}
+
+.head-cliente-sem-programacao{
+position: sticky;
+top: 4px;
+z-index: 2;
+background-color: white;
+margin-left: -14px;
+}
+
+.container-cliente-sem-programacao{
+padding-top: 25px;
+margin-left: 210px;
+width: auto;
+}
+
+.titulo-cliente-sem-programacao{
+font-size: 30px;
+position:sticky;
+left: 195px;
+color: #083642;
+text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.calendar {
+margin-left: -35px;
+margin-bottom:96px !important;
+}
+
+.indicator1 {
+margin-left: 32px;
+position:sticky;
+left: 190px;
+}
+
+.indicator2 {
+margin-left: 40px;
+position:sticky;
+left: 458px;
+}
+
+.indicator3 {
+margin-left: 55px;
+position:sticky;
+left: 726px;
+}
+
+.indicator4 {
+margin-left: 60px;
+position:sticky;
+left: 1015px;
+}
+
+.indicator5 {
+margin-left: 60px;
+position:sticky;
+left: 1300px;
+}
+
+.tBodyCsP{
+background: white;
+color: black;
+}
+
+.centro{
+text-align-last: center;
+}
+
+.fixed-table-loading{
+    display: none;
+}

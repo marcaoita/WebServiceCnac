@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+  <head>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/obrigacao.bcb/7110.css" rel="stylesheet" />
+    <title>Cadastro Escopo</title>
+  </head>
+  <body></body>
+  <div class="container-7110">
+    <div class="cadastro-7110">
+      
+      <h2>7110</h2>
+      <form
+        id="myform"
+        action="/obrigacoes-acessorias/7110"
+        th:object="${doc7110}"
+        method="get"
+        class="form-row"
+      >
+        <div id="errdtBase" class="form-7110">
+          <label for="dtBase">Data Base</label>
+          <input class="form-control" id="dtBase" th:field="*{dtBase}" />
+        </div>
+
+        <div class="form-7110" style="margin-left: -6px">
+          <label for="anoBase">Ano Referência</label>
+          <select class="form-control" id="anoBase" th:field="*{anoBase}">
+            <option
+              th:each="ano : ${anoBase}"
+              th:utext="${ano}"
+              th:value="${ano}"
+            ></option>
+          </select>
+        </div>
+        
+        <div id="errtipoRemessa" class="form-7110">
+          <label for="tipoRemessa">Tipo Remessa</label>
+          <select
+            class="form-control"
+            id="tipoRemessa"
+            th:field="*{tipoRemessa}"
+          >
+            <option th:utext="'I - Inclusão'" th:value="I"></option>
+            <option th:utext="'S - Substituição'" th:value="S"></option>
+          </select>
+        </div>
+
+        <div id="errcpfResponsavel" class="form-7110">
+          <label for="cpfResponsavel">CPF Responsável</label>
+          <input
+            class="form-control"
+            id="cpfResponsavel"
+            th:field="*{cpfResponsavel}"
+          />
+        </div>
+
+        <div id="errcontemContrato" class="form-7110">
+            <label for="contemContrato">Contém Contrato?</label>
+            <select
+              class="form-control"
+              id="contemContrato"
+              th:field="*{contemContrato}"
+            >
+              <option selected th:utext="SIM" th:value="S"></option>
+              <option th:utext="NÃO" th:value="N"></option>
+            </select>
+          </div>
+
+          <div id="errvlrHrAssociado" class="form-7110">
+            <label for="vlrHrAssociado">Valor Hora Associado</label>
+            <input
+              class="form-control"
+              id="vlrHrAssociado"
+              th:field="*{vlrHrAssociado}"
+            />
+          </div>
+
+          <div id="errvlrHrNaoAssociado" class="form-7110">
+            <label for="vlrHrNaoAssociado">Valor Hora Não Associado</label>
+            <input
+              class="form-control"
+              id="vlrHrNaoAssociado"
+              th:field="*{vlrHrNaoAssociado}"
+            />
+          </div>
+
+        <button
+          type="submit"
+          class="btn btn-dark"
+          style="margin-top: 9%; margin-right: 10%"
+        >
+          Gerar 7110
+        </button>
+      </form>
+    </div>
+  </div>
+</html>

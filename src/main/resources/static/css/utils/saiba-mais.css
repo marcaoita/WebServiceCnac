@@ -1,0 +1,54 @@
+.container-saiba-mais{
+    padding-top: 45px;
+    margin-left: 19%;
+    margin-right: 10%;
+}
+.saiba-mais{
+    text-align-last: center;
+    color: black;
+}
+
+.titulo-saiba-mais{
+    color: black;
+    font-size: 26px;
+}
+
+.titulo-topico{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.texto{
+    font-size: 17px;
+}
+.intro-imagem {
+    margin-bottom: 0;
+}
+
+.sem-espaco{
+    margin-bottom: 0;
+    display: contents;
+}
+.sublinhado{
+text-decoration: underline;
+}
+.alinha-imagem{
+    text-align-last: center;
+}
+
+.pula-pouco-espaco{
+    margin-bottom: 6%;
+}
+
+.pula-espaco{
+    margin-bottom: 6%;
+}
+
+.negrito{
+ font-weight: 700;
+}
+
+.topico{
+    margin-left: 4%;
+    font-size: 17px;
+}

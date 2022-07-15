@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<head>
+    <title>Modal Controle Amostra</title>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/programacao/edicao/editar-programacao.css" rel="stylesheet">
+    <link href="css/programacao/horizontal/programacao-horizontal.css" rel="stylesheet">
+
+</head>
+
+<body>
+<div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" id="myModal"
+     role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content modal-geracao-amostra">
+            <div class="modal-body" style="padding: 26px;height: 345px;">
+
+                <div class="box-info">
+                    <div class="box-info-grid row-fluid">
+                        <div class="col-md-2">
+                            <span class="title-box selecao-arquivo titulo-tabelinha"
+                                  style="font-size: 14px;">CNPJ</span>
+                            <strong class="value-box titulo-tabelinha" style="font-weight: 300;">
+                                <td th:inline="text">[[${cnpj}]]</td>
+                            </strong>
+                        </div>
+                        <div class="col-md-2">
+                            <span class="title-box selecao-arquivo titulo-tabelinha" style="font-size: 14px;">Sigla da Cooperativa</span>
+                            <strong class="value-box titulo-tabelinha" id="siglaCoop" style="font-weight: 300;">
+                                <td th:inline="text">[[${siglaCoop}]]</td>
+                            </strong>
+                        </div>
+
+                        <div class="col-md-2">
+                            <span class="title-box selecao-arquivo titulo-tabelinha"
+                                  style="font-size: 14px;">Escopos</span>
+                            <strong class="value-box titulo-tabelinha" id="escopos" style="font-weight: 300;">
+                                <td th:inline="text">[[${escopos}]]</td>
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="/controle-geracao-amostra/update" class="forms-amostra form-inline" id="myform"
+                      method="post" style="display: flex;" th:object="${controleAmostraDTO}">
+
+                    <div class="itens-geracao-amostra">
+                        <label for="id">ID programação</label>
+                        <input class="input-id form-control" id="id" name="id" th:inline="text" th:value=${id}>
+                    </div>
+
+                    <div class="itens-geracao-amostra" id="errDtBase">
+                        <label for="dtBase">Data Base</label>
+                        <input class="form-control" id="dtBase" style="height: 35px;" th:field="*{dtBase}">
+                    </div>
+
+                    <div
+                            class="form-group itens-geracao-amostra"
+                            id="errAmostraGerada"
+                            style="width: 212px;margin-top: 28px;"
+                    >
+                        <label class="titulo-amostra-gerada" for="amostraGerada">Amostra Gerada</label>
+                        <select
+                                class="form-control select-amostra-gerada"
+                                id="amostraGerada"
+                                name="amostraGerada"
+                        >
+                            <option selected value=true>SIM</option>
+                            <option value=false>NÃO</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-dark" style="margin-top: 37px; margin-left: 33%;" type="submit">Salvar
+                    </button>
+                    <span class='alerta-check' id="alerta" style="margin-top: 15px;margin-left: 15px;"></span>
+                </form>
+
+                <div class="enviando" style="display: none;">
+                    <img src="img/icones/sending.gif" style="margin-top:-71px;" alt="carregando">
+                    <p style="margin-left: 58px;">Enviando...</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/amostra/send.js"></script>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<link href="css/utils/estilo-geral.css" rel="stylesheet">
+<link href="css/programacao/horizontal/programacao-horizontal.css" rel="stylesheet">
+<link href="css/programacao/vertical/programacao-vertical.css" rel="stylesheet">
+<link href="css/programacao/vertical/tela-programacao.css" rel="stylesheet">
+<link href="css/relatorio/csa/relatorio-csa.css" rel="stylesheet"/>
+
+<head>
+    <title>Relatório CSA</title>
+</head>
+
+<div class="container-cliente-sem-programacao">
+    <div class="head-cliente-sem-programacao" style="margin-top: -5px">
+        <div class="month-indicator" style="margin-left: -2px; width: max-content">
+            <time class="titulo-cliente-sem-programacao" datetime="2020-02">
+                Relatório CSA
+            </time>
+            <div class="load" style="height: 0">
+                <img src="img/utilitarios/Spinner-3.gif" style="width: 50px; margin-left: 251%; margin-top: -41%" alt="carregando"/>
+            </div>
+        </div>
+        <hr class="sidebar-divider" style="margin-top: 7px; margin-left: 0; width: 1450px;margin-bottom: 17px;"/>
+        <div class="calendar">
+            <div class="indicator1" style="z-index: 1">
+                <form method="post">
+                    <label class="descritivo-filtro">Ano Base</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary" id="anoBase"
+                            onChange="onChangeAnoBase()" title="Selecione">
+                        <option th:each="ano : ${anos}" th:selected="${ano} == ${#dates.year(#dates.createNow())}"
+                                th:utext="${ano}" th:value="${ano}"></option>
+                    </select>
+                </form>
+            </div>
+            <div class="indicator2">
+                <button id="btnExport">Exportar Tabela em Excel</button>
+            </div>
+        </div>
+
+        <div class="" style="
+          width: 1450px;
+          margin-left: 0;
+          margin-bottom: 0;
+          background: white;
+          margin-top: -80px;
+        ">
+            <div class="card-body" style="font-size: 12px; padding: 0">
+                <div class="table-responsive fixTableHead">
+                    <table aria-label="tabela-dados" class="table display tablesorter tabela-plugin" data-toggle="table"
+                           data-toolbar="#toolbar"
+                           id="dados" style="color: white; width: 100%;">
+                        <thead>
+                        <tr>
+                            <th class="centro" data-field="numCoop" data-sortable="true" data-width="80">
+                                Número da Cooperativa <em class="fas fa-sort"></em>
+                            </th>
+                            <th data-field="siglaCoop" data-sortable="true" data-width="140">
+                                Sigla Cooperativa <em class="fas fa-sort"></em>
+                            </th>
+                            <th data-field="dtInicioProg" data-formatter="dataAtualFormatada" data-sortable="true"
+                                data-width="80">
+                                Data início da Programação <em class="fas fa-sort"></em>
+                            </th>
+                            <th data-field="dtFimProg" data-formatter="dataAtualFormatada" data-sortable="true"
+                                data-width="80">
+                                Data fim da Programação <em class="fas fa-sort"></em>
+                            </th>
+                            <th data-field="inicioCSA" data-formatter="dataAtualFormatada" data-sortable="true"
+                                data-width="80">
+                                Início CSA <em class="fas fa-sort"></em>
+                            </th>
+                            <th class="centro" data-field="diasEntre" data-sortable="true" data-width="50">
+                                Dias entre <em class="fas fa-sort"></em>
+                            </th>
+                            <th class="centro" data-field="status" data-sortable="true" data-width="110">
+                                Status <em class="fas fa-sort"></em>
+                            </th>
+                            <th class="centro" data-field="temProdSicoob" data-sortable="true" data-width="87">
+                                Tem Produto Sicoob <em class="fas fa-sort"></em>
+                            </th>
+                            <th class="centro" data-field="diasEntreProgSicoob" data-sortable="true"
+                                data-width="67">
+                                Dias entre produtos Sicoob <em class="fas fa-sort"></em>
+                            </th>
+                            <th data-field="iniProdSicoob" data-formatter="dataAtualFormatada" data-sortable="true"
+                                data-width="52">
+                                Início Produto Sicoob <em class="fas fa-sort"></em>
+                            </th>
+                            <th data-field="statusProdSicoob" data-sortable="true" data-width="78">
+                                Status Produto Sicoob <em class="fas fa-sort"></em>
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
+
+<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+<script src="js/relatorio/csa/eventos.js"></script>
+<script src="js/generic/monta-tabela.js"></script>
+<script src="js/relatorio/csa/send-post.js"></script>
+<script src="js/generic/load-modal.js"></script>
+<script src="js/utils/funcoesUteis.js"></script>
+<script src="js/utils/exportTableToExcel.js"></script>
+<script src="js/plugins/table2excel/jquery.table2excel.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $(".select-mult").selectpicker();
+        loadList();
+
+        $("#btnExport").on("click", function (e) {
+            e.preventDefault();
+            Export("dados", "relatorio-csa");
+        });
+    });
+
+    $(function () {
+        $("#dados").bootstrapTable();
+    });
+</script>

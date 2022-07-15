@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<head>
+    <title>Lista de Atividades</title>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/programacao/cadastro/cadastro-programacao.css" rel="stylesheet">
+    <link href="css/programacao/vertical/tela-programacao.css" rel="stylesheet">
+    <link href="css/plugins/litepicker/litepicker.css" rel="stylesheet">
+</head>
+
+<body>
+<div aria-hidden="true" aria-labelledby="myExtraLargeModalLabel" class="modal fade bd-example-modal-xl" id="myModal"
+     role="dialog">
+    <div class="modal-dialog modal-xl" style="max-width: 1124px;">
+        <div class="modal-content">
+            <div class="modal-header" style="padding-bottom: 5px;">
+                <h1 class="titulo-cadastro-programacao1" style="margin-bottom: 0;">Cadastro Programação</h1>
+                <button aria-label="Fechar" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding:12px;margin-left: 4px;">
+                <div class="container-programacao-conteudo">
+                    <div class="box-info" style="margin-top: 5px;margin-bottom: 10px;">
+                        <div class="box-info-grid row-fluid">
+                            <div class="col-md-2">
+                                <span class="title-box selecao-arquivo titulo-tabelinha" data-placement="top"
+                                      data-toggle="tooltip" style="font-size: 14px;"
+                                      title="Quantidade de dias úteis contratados selecionados, já deduzido horas de revisão e CSA se aplicável. (com base nas atividades selecionadas)">Dias úteis contratados<em
+                                        class="fas fa-info icone-configuracoes"></em></span>
+                                <strong class="value-box titulo-tabelinha" id="diasSelecionados"
+                                        style="font-weight: 300;">0</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="title-box selecao-arquivo titulo-tabelinha" data-placement="top"
+                                      data-toggle="tooltip" style="font-size: 14px;"
+                                      title="Dias úteis alocados nesta(s) atividade(s), considerando esta programação e a(s) já cadastrada(s), se houver">Dias úteis programados<em
+                                        class="fas fa-info icone-configuracoes"></em></span>
+                                <strong class="value-box titulo-tabelinha" id="diasProgramados"
+                                        style="font-weight: 300;">0</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="title-box selecao-arquivo titulo-tabelinha"
+                                      data-placement="top" data-toggle="tooltip"
+                                      style="font-weight: bold;font-size: 14px;"
+                                      title="Saldo de Dias = (Dias úteis Contratados) - (Dias úteis Programados)">Saldo de Dias<em
+                                        class="fas fa-info icone-configuracoes"></em></span>
+                                <strong class="value-box titulo-tabelinha" id="saldoDias">0</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cadastro-programacao">
+                        <form class="form-row" id="myform" method="post"
+                              th:object="${programacao}">
+                            <div class="form-row align-items-center">
+                                <div class="form-group coluna-programacao" style="margin-left: -6px;">
+                                    <label class="titulo-cadastro-programacao" for="anoBaseCadastro">Ano base</label>
+                                    <select class="form-control form-control-programacao" id="anoBaseCadastro"
+                                            onchange="loadAtividades()"
+                                            th:field="*{anoBase}">
+                                        <option th:each="ano : ${anoBase}"
+                                                th:utext="${ano}"
+                                                th:value="${ano}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group coluna-programacao">
+                                    <label class="titulo-cadastro-programacao" for="tipoVisita">Tipo Visita</label>
+                                    <select class="form-control form-control-programacao" id="tipoVisita">
+                                        <option class="bs-title-option" value="selecione">Selecione</option>
+                                        <option th:value="Home_office">Home office</option>
+                                        <option th:value="Presencial">Presencial</option>
+                                        <option th:value="Híbrido">Híbrido</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group coluna-programacao">
+                                    <label class="titulo-cadastro-programacao" for="tipoServicoCadastro">Tipo
+                                        Serviço</label>
+                                    <select class="form-control form-control-programacao" id="tipoServicoCadastro"
+                                            onchange="onChangeServico()">
+                                        <option class="bs-title-option" disabled value="selecione">Selecione</option>
+                                        <option>AC</option>
+                                        <option>AE</option>
+                                        <option>ES</option>
+                                        <option>TI</option>
+                                        <option>CSA</option>
+                                        <option value="FERIAS">FÉRIAS</option>
+                                        <option value="LICENCA">LICENÇA</option>
+                                        <option>TREINAMENTO</option>
+                                        <option value="COMPENSACAO">COMPENSAÇÃO</option>
+                                        <option>ACOMPANHAMENTO</option>
+                                        <option>RESERVA</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group coluna-programacao">
+                                    <label class="titulo-cadastro-programacao" for="escritorio">Escritório</label>
+                                    <select class="form-control form-control-programacao" id="escritorio">
+                                        <option class="bs-title-option" value="selecione">Selecione</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="BSB">Brasília</option>
+                                        <option value="BH">Belo Horizonte</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group coluna-programacao" style="margin-right: 0;width: 208px;">
+                                    <label class="titulo-cadastro-programacao" for="hasCSA">Terá CSA?</label>
+                                    <select class="form-control form-control-programacao"
+                                            id="hasCSA" onchange="onChangeColaboradores()">
+                                        <option class="bs-title-option" value="selecione">Selecione</option>
+                                        <option selected value="true">SIM</option>
+                                        <option value="false">NÃO</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group coluna-programacao1" id="errClienteDisp">
+                                    <label class="titulo-cadastro-programacao" for="clienteDisp">Cliente</label>
+                                    <select class="form-control select-mult" data-live-search="true" id="clienteDisp"
+                                            onchange="loadAtividades()"
+                                            th:field="*{cli}"
+                                            title="Selecione um  Cliente">
+                                        <option class="bs-title-option" selected value="selecione">Selecione</option>
+                                        <option th:each="cliente : ${clientes}"
+                                                th:utext="${cliente.getNumCoop} + ' - ' + ${cliente.getSiglaCoop}"
+                                                th:value="${cliente.getCnpjCliente}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group coluna-programacao2" id="atividadesForm">
+                                    <label class="titulo-cadastro-programacao" for="atividadesForm">Atividades</label>
+                                    <select class="form-control select-mult" data-actions-box="true"
+                                            data-live-search="true" id="atividades"
+                                            multiple="multiple" name="atividades" onchange="onChangeAtividade()"
+                                            required="required"
+                                            title="Selecione uma ou mais atividades">
+                                        <option class="bs-title-option" value="selecione">Selecione</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group datas1">
+                                <label class="titulo-cadastro-programacao" for="dtsIni" style="width: 351px;">Data de
+                                    início e fim da programação</label>
+                                <input class="form-control daterange" id="dtsIni"
+                                       style="width: 530px; height: 35px;font-size: 14px;"
+                                       type="text"/>
+                                <span class='alerta' id="alertaParalelismo"></span>
+                                <span class='alerta' id="alertaFerias"></span>
+                            </div>
+                            <div class="form-group datas2">
+                                <label class="titulo-cadastro-programacao" for="dtsExec" style="width: 351px;">Data
+                                    início e fim execução in loco</label>
+                                <input class="form-control daterange" id="dtsExec"
+                                       style="width: 545px; height: 35px;font-size: 14px;" type="text"
+                                       value=""/>
+                                <span class='alerta' id="alertaFeriado"></span>
+                            </div>
+                            <div class="form-row" style="width:100%;">
+                                <div class="form-group" id="errColaboradorResp"
+                                     style="width:100%;margin-left: -10px;margin-top: -11px;">
+                                    <label class="titulo-cadastro-programacao" for="gestores">Gestores</label>
+                                    <select class="form-control select-mult" data-actions-box="true"
+                                            data-live-search="true"
+                                            data-width="1076px"
+                                            id="gestores" multiple name="gestores"
+                                            title="Selecione um ou mais gestores">
+                                        <option disabled>Diretores</option>
+                                        <option th:attr="data-valor=${d.getEmail()}, data-area=${d.getArea()}"
+                                                th:each="d : ${diretores}"
+                                                th:utext="${d.getNome()}"
+                                                th:value="${d.getCpfCnpj()}"
+                                        ></option>
+                                        <option data-divider="true"></option>
+                                        <option disabled>Gerentes</option>
+                                        <option th:attr="data-valor=${g.getEmail()}, data-area=${g.getArea()}"
+                                                th:each="g : ${gerentes}"
+                                                th:utext="${g.getNome()}"
+                                                th:value="${g.getCpfCnpj()}"
+                                        ></option>
+                                        <option data-divider="true"></option>
+                                        <option disabled>Supervisores</option>
+                                        <option th:attr="data-valor=${s.getEmail()}, data-area=${s.getArea()}"
+                                                th:each="s : ${supervisores}"
+                                                th:utext="${s.getNome()}"
+                                                th:value="${s.getCpfCnpj()}"
+                                        ></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="errColaboradorDisp" style="width: 100%;margin-left: -15px;">
+                                <label class="titulo-cadastro-programacao" for="colaboradores">Colaboradores</label>
+                                <select class="form-control select-mult" data-actions-box="true" data-live-search="true"
+                                        data-width="1076px"
+                                        id="colaboradores"
+                                        multiple name="colaboradores" onchange="onChangeColaboradores()"
+                                        title="Selecione um ou mais colaboradores">
+
+                                    <option data-divider="true"></option>
+                                    <option disabled>Belo Horizonte</option>
+                                    <option th:attr="data-valor=${BH.getEmail()}, data-area=${BH.getArea()}"
+                                            th:each="BH, row : ${BH}"
+                                            th:selected="${BH.getCpfCnpj} == ${colaborador} ? true : false"
+                                            th:text="${BH.getNome} + ' - ' + ${BH.getCargo}"
+                                            th:value="${BH.getCpfCnpj}"
+
+                                    ></option>
+                                    <option data-divider="true"></option>
+                                    <option disabled>Brasília</option>
+                                    <option th:attr="data-valor=${BSB.getEmail()}, data-area=${BSB.getArea()}"
+                                            th:each="BSB, row : ${BSB}"
+                                            th:selected="${BSB.getCpfCnpj} == ${colaborador} ? true : false"
+                                            th:text="${BSB.getNome} + ' - ' + ${BSB.getCargo}"
+                                            th:value="${BSB.getCpfCnpj}"
+
+                                    ></option>
+                                    <option data-divider="true"></option>
+                                    <option disabled>São Paulo</option>
+                                    <option th:attr="data-valor=${SP.getEmail()}, data-area=${SP.getArea()}"
+                                            th:each="SP, row : ${SP}"
+                                            th:selected="${SP.getCpfCnpj} == ${colaborador} ? true : false"
+                                            th:text="${SP.getNome} + ' - ' + ${SP.getCargo}"
+                                            th:value="${SP.getCpfCnpj}"
+
+                                    ></option>
+                                    <option data-divider="true"></option>
+                                    <option disabled>CSA</option>
+                                    <option th:attr="data-valor=${CSA.getEmail()}, data-area=${CSA.getArea()}"
+                                            th:each="CSA, row : ${CSA}"
+                                            th:selected="${CSA.getCpfCnpj} == ${colaborador} ? true : false"
+                                            th:text="${CSA.getNome} + ' - ' + ${CSA.getCargo}"
+                                            th:value="${CSA.getCpfCnpj}"
+
+                                    ></option>
+                                    <option disabled>TI</option>
+                                    <option th:attr="data-valor=${TI.getEmail()}, data-area=${TI.getArea()}"
+                                            th:each="TI, row : ${TI}"
+                                            th:selected="${TI.getCpfCnpj} == ${colaborador} ? true : false"
+                                            th:text="${TI.getNome} + ' - ' + ${TI.getCargo}"
+                                            th:value="${TI.getCpfCnpj}"
+
+                                    ></option>
+                                </select>
+                            </div>
+                        </form>
+                        <div class="container-alerta-botao">
+                            <span class='alerta' id="alertaCadastro"></span>
+                        </div>
+                        <div class="container-alerta-botao">
+                            <button class="btn btn-dark" onclick="verificarInformacoes()"
+                                    style="margin-top: -2px; margin-bottom: 36px;">Cadastrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="js/programacao/cadastro/eventos.js"></script>
+<script src="js/programacao/cadastro/getters-setters.js"></script>
+<script src="js/programacao/cadastro/send-post.js"></script>
+<script src="js/programacao/cadastro/utilitarios.js"></script>
+<script src="js/programacao/cadastro/select-picker-preferencias.js"></script>
+<script src="js/programacao/cadastro/feriado.js"></script>
+<script src="js/programacao/cadastro/alertas.js"></script>
+<script src="js/programacao/cadastro/verificacoes.js"></script>
+
+
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+        selectpickerDtInicio(/*[[${data}]]*/);
+        selectpickerExecucao();
+    });
+</script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+</html>

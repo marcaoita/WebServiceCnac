@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<link href="css/utils/estilo-geral.css" rel="stylesheet">
+<link href="css/programacao/horizontal/programacao-horizontal.css" rel="stylesheet">
+<link href="css/programacao/vertical/tela-programacao.css" rel="stylesheet">
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+
+<body>
+
+<!--suppress HtmlUnknownAttribute -->
+<div class="alert alert-secondary programacao-titulo" id="cliente" role="alert">
+    <div class="titulo-coop" th:if="${tipo} == 'cliente'">[[${cliente.numCoop}]] [[${cliente.siglaCoop}]]</div>
+    <div class="titulo-coop" th:if="${tipo} == 'colaborador'">[[${colaborador.nome}]]</div>
+</div>
+
+<div class="row" style="justify-content: center;width: auto;margin: 0 auto;margin-bottom: 25px;" th:if="${tipo} == 'cliente'">
+    <div>
+        <div class="" style="width: 153px;">
+            <div class="card-header card-header-programacao">
+                Tipo Serviço
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item grupo-lista-programacao">AC</li>
+                <li class="list-group-item grupo-lista-programacao">AE</li>
+                <li class="list-group-item grupo-lista-programacao">ES</li>
+                <li class="list-group-item grupo-lista-programacao totalizador">Total</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="" style="width: 153px;">
+            <div class="card-header card-header-programacao">
+                Escopo
+            </div>
+            <!--suppress HtmlUnknownAttribute -->
+            <ul class="list-group list-group-flush" th:attr="cliente=${cliente}">
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.quantEscopos("AC")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.quantEscopos("AE")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.quantEscopos("ES")}]]</li>
+                <li class="list-group-item grupo-lista-programacao totalizador">[[${cliente.quantEscopos()}]]</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="" style="width: 153px;">
+            <div class="card-header card-header-programacao">
+                Dias Úteis Contratados
+            </div>
+            <!--suppress HtmlUnknownAttribute -->
+            <ul class="list-group list-group-flush" th:attr="cliente=${cliente}">
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasContratados("AC")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasContratados("AE")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasContratados("ES")}]]</li>
+                <li class="list-group-item grupo-lista-programacao totalizador">[[${cliente.diasContratados()}]]</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="" style="width: 153px;">
+            <div class="card-header card-header-programacao">
+                Dias Úteis Alocados
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasAlocados("AC")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasAlocados("AE")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasAlocados("ES")}]]</li>
+                <li class="list-group-item grupo-lista-programacao totalizador">[[${cliente.diasAlocados()}]]</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="" style="width: 153px;">
+            <div class="card-header card-header-programacao">
+                Dias Úteis dest CSA
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasDestCSA("AC")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasDestCSA("AE")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasDestCSA("ES")}]]</li>
+                <li class="list-group-item grupo-lista-programacao totalizador">[[${cliente.diasDestCSA()}]]</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="" style="width: 153px;">
+            <div class="card-header card-header-programacao">
+                Dias Úteis Revisão
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasRevisao("AC")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasRevisao("AE")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.diasRevisao("ES")}]]</li>
+                <li class="list-group-item grupo-lista-programacao totalizador">[[${cliente.diasRevisao()}]]</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="" style="width: 153px;">
+            <div class="card-header card-header-programacao">
+                Saldo de Dias
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.saldoDias("AC")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.saldoDias("AE")}]]</li>
+                <li class="list-group-item grupo-lista-programacao">[[${cliente.saldoDias("ES")}]]</li>
+                <li class="list-group-item grupo-lista-programacao totalizador">[[${cliente.saldoDias()}]]</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="" style="width: 179px;">
+            <div class="card-header card-header-programacao">
+                % Programação Execução
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item grupo-lista-programacao">
+                    [[${cliente.comprometimentoDiasContratados("AC")}]]
+                </li>
+                <li class="list-group-item grupo-lista-programacao">
+                    [[${cliente.comprometimentoDiasContratados("AE")}]]
+                </li>
+                <li class="list-group-item grupo-lista-programacao">
+                    [[${cliente.comprometimentoDiasContratados("ES")}]]
+                </li>
+                <li class="list-group-item grupo-lista-programacao totalizador">
+                    [[${cliente.comprometimentoDiasContratados()}]]
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container-programacao" id="programacoes">
+    <!--suppress HtmlUnknownAttribute -->
+    <div th:each="programacao : ${programacoes}">
+        <!--suppress HtmlUnknownAttribute -->
+        <div class="card" th:attr="tipo-servico=${programacao.tipoServico}" th:id="${programacao.id}">
+            <!--suppress HtmlUnknownAttribute -->
+            <div class="card-header grid-card titulo-programacao" th:inline="text" style="padding-left: 0;">
+
+                <th:block th:switch="${programacao.tipoServico.toString()}">
+                    <button class="btn btn-default btn-circle titulo-programacao" th:case="'AC'"
+                            title="AUDITORIA COOPERATIVA" type="button">AC
+                    </button>
+                    <button class="btn btn-default btn-circle titulo-programacao" th:case="'AE'"
+                            title="AUDITORIA EXTERNA" type="button">AE
+                    </button>
+                    <button class="btn btn-default btn-circle titulo-programacao" th:case="'ES'"
+                            title="AUDITORIA ESPECIAL" type="button">ES
+                    </button>
+                    <button class="btn btn-default btn-circle titulo-programacao" th:case="'TI'" title="TI"
+                            type="button">TI
+                    </button>
+                    <button class="btn btn-default btn-circle titulo-programacao" th:case="'CSA'" title="CSA"
+                            type="button">CSA
+                    </button>
+                    <button class="btn btn-default btn-circle titulo-programacao" th:case="'TREINAMENTO'"
+                            title="TREINAMENTO" type="button">TR
+                    </button>
+                    <button class="btn btn-default btn-circle titulo-programacao" th:case="'FERIAS'" title="FÉRIAS"
+                            type="button">FR
+                    </button>
+                    <button class="btn btn-default btn-circle titulo-programacao" th:case="'LICENÇAS'" title="LICENÇAS"
+                            type="button">LI
+                    </button>
+                    <button class="btn btn-default btn-circle titulo-programacao" th:case="'COMPENSACAO'"
+                            title="COMPENSAÇÃO" type="button">CP
+                    </button>
+                    <button class="btn btn-default btn-circle titulo-programacao" th:case="'ACOMPANHAMENTO'"
+                            title="ACOMPANHAMENTO" type="button">ACM
+                    </button>
+                    <button class="btn btn-default btn-circle titulo-programacao" th:case="'RESERVA'" title="RESERVA"
+                            type="button">RE
+                    </button>
+                </th:block>
+
+
+                <button type="button" class="btn btn-default btn-circle escritorio">[[${programacao.escritorioOrig}]]
+                </button>
+                <div class="estiqueta-execucao btn-circle" style="align-self: center;width: 81px;">
+                    [[${programacao.getExecutado()}]] <br>Executado
+                </div>
+                <div class="etiqueta-em-revisao btn-circle" style="align-self: center;width: 81px;">
+                    [[${programacao.getEmRevisao()}]] <br>Em revisão
+                </div>
+                <div class="etiqueta-revisao btn-circle" style="align-self: center;width: 81px;">
+                    [[${programacao.getRevisado()}]] <br>Revisado
+                </div>
+                <!--suppress HtmlUnknownAttribute, HtmlUnknownAttribute -->
+                <button class="btn-parecer button_top" th:if="${programacao.getTipoServico.toString()} == 'AE'"
+                        style="align-self: center;width: 139px;" th:onclick="parecer([[${programacao.id}]])"
+                >Parecer de Auditoria
+                </button>
+                <!--suppress HtmlUnknownAttribute, HtmlUnknownAttribute -->
+                <button class="av-critica button_top" th:if="${programacao.getTipoServico.toString()} == 'AC'"
+                        style="align-self: center;" th:onclick="avaliacao([[${programacao.cli.cnpjCliente}]], [[${programacao.getAnoBase()}]])"
+                >Avaliação Crítica
+                </button>
+
+                <!--suppress HtmlUnknownAttribute, HtmlUnknownAttribute -->
+
+                    <em th:onclick="editaProgramacao([[${programacao.id}]],[[${programacao.cli.cnpjCliente}]],[[${programacao.anoBase}]])"
+                        th:value="${programacao.id}" class="fas fa-pencil-alt btn-editar selecao-arquivo">
+                    </em>
+
+                <em class="fas fa-trash-alt icone-lixeira" onclick="deleteProgramacao($(this).attr('value'))"
+                    style="cursor: pointer" th:value="${programacao.id}"></em>
+            </div>
+
+            <table aria-label="tabela-programacao" class="tabela-programacao table-hover">
+                <tbody style="font-size: 11px">
+                <tr>
+                    <td colspan="1" style="font-weight: bold;padding: 0;padding-left: 2px;">Escopos</td>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <td colspan="3" style="border-right: 1px solid #e3e6f0;" th:inline="text">
+                        [[${programacao.getStringEscopos()}]]
+                    </td>
+                    <td style="font-weight: bold">Amostra Gerada?</td>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <td style="border-right: 1px solid #e3e6f0;width: 61px;" th:inline="text">
+                        [[(${programacao.isAmostraGerada()} ? 'SIM' : 'NÃO' )]]
+                    </td>
+
+                    <td style="font-weight: bold">Data Base Amostra</td>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <td style="border-right: 1px solid #e3e6f0;width: 61px;" th:inline="text">
+                        [[${programacao.getDtBase()}]]
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="width: 100px;font-weight: bold;">Dias Contratados</td>
+                    <td style="border-right: 1px solid #e3e6f0;width: 68px;">
+                        [[${programacao.getDiasVendidos()}]]
+
+                    <td style="font-weight: bold;width: 146px;">Dias Alocadas Auditores</td>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <td style="border-right: 1px solid #e3e6f0;width: 67px;" th:inline="text">
+                        [[${programacao.getDiasAlocados()}]]
+                    </td>
+
+                    <td style="font-weight: bold;width: 141px;">Dias Destinados a revisão</td>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <td style="border-right: 1px solid #e3e6f0;width: 70px;" th:inline="text"> [[${programacao.getDiasRevisao()}]]
+                    </td>
+
+                    <td style="font-weight: bold;width: 103px;">Dias de atraso</td>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <td style="border-right: 1px solid #e3e6f0;width: 66px;" th:inline="text">
+                        [[${programacao.diasAtraso}]]
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="font-weight: bold">Data Início de Programação</td>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <td style="border-right: 1px solid #e3e6f0" th:inline="text">
+                        [[${#dates.format(programacao.dtInicio, 'dd-MM-yyyy')}]]
+                    </td>
+
+                    <td style="font-weight: bold;border-bottom: 1px solid #e3e6f0;">Data Final de Programação</td>
+                    <td style="border-right: 1px solid #e3e6f0;border-bottom: 1px solid #e3e6f0;">
+                        [[${#dates.format(programacao.dtFim, 'dd-MM-yyyy')}]]
+                    </td>
+
+                    <td style="font-weight: bold;border-bottom: 1px solid #e3e6f0;"> Data Final Auditoria</td><!--suppress HtmlUnknownAttribute -->
+                    <td style="border-right: 1px solid #e3e6f0;border-bottom: 1px solid #e3e6f0;" th:inline="text">
+                        [[${#dates.format(programacao.getDtFinalAuditoria(), 'dd-MM-yyyy')}]]
+                    </td>
+
+                    <td style="font-weight: bold;border-bottom: 1px solid #e3e6f0;">Data Emissão RAC</td>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <td style="border-right: 1px solid #e3e6f0;border-bottom: 1px solid #e3e6f0;" th:inline="text">
+                        [[${#dates.format(programacao.getDtEmissaoRAC(), 'dd-MM-yyyy')}]]
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight: bold;">Data de Início Execução In Loco</td>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <td class="data-format" style="border-right: 1px solid #e3e6f0;" th:inline="text">
+                        [[${#dates.format(programacao.dtInicioExe, 'dd-MM-yyyy')}]]
+                    </td>
+
+                    <td style="font-weight: bold;">Data de Final Execução In Loco</td>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <td style="border-right: 1px solid #e3e6f0;" th:inline="text">
+                        [[${#dates.format(programacao.dtFimExe, 'dd-MM-yyyy')}]]
+                    </td>
+
+                    <td style="font-weight: bold;">Tem CSA?</td>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <td style="border-right: 1px solid #e3e6f0;width: 61px;"
+                        th:inline="text">
+                        [[(${programacao.temCSA} ? 'SIM' : 'NÃO')]]
+                    </td>
+
+                    <td style="font-weight: bold">Dias previstos CSA</td><!--suppress HtmlUnknownAttribute -->
+                    <td style="border-right: 1px solid #e3e6f0" th:inline="text">[[${programacao.getDiasDesCSA()}]]</td>
+
+                </tr>
+
+                </tbody>
+            </table>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item lista-gestor">
+                    Gestores:
+                    <span class="gestor-programacao">[[${programacao.gestores.toString()}]]</span>
+                </li>
+                <div class="card-header-colaboradores" style="background: #e7e7e7; color: black">
+                    <div class="titulo-card">Colaboradores</div>
+                </div>
+
+                <table aria-label="tabela-programacao2" class="tabela-colaboradores-programacao"
+                       th:if="${programacao.colaboradores.size()} <= 3">
+                    <th></th>
+                    <tbody style="font-size: 11px;">
+                    <tr>
+                        <td style="font-weight: bold">CPF</td>
+                        <td style="font-weight: bold">Nome</td>
+                        <td style="font-weight: bold">Cargo</td>
+                    </tr>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <tr th:each="colaborador : ${programacao.colaboradores}">
+                        <!--suppress HtmlUnknownAttribute -->
+                        <td th:inline="text">[[${colaborador.cpfCnpj}]]</td>
+                        <!--suppress HtmlUnknownAttribute -->
+                        <td th:inline="text">[[${colaborador.nome}]]</td>
+                        <!--suppress HtmlUnknownAttribute -->
+                        <td th:inline="text">[[${colaborador.cargo.cargoDesc}]]</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <li class="list-group-item lista-gestor" th:if="${programacao.colaboradores.size()} > 3">
+                    <span class="gestor-programacao">[[${programacao.colaboradores.toString()}]]</span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+
+    $(document).ready(function () {
+        onChangeVisibilidade();
+    });
+
+</script>
+</html>

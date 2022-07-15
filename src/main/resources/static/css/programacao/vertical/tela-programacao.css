@@ -1,0 +1,346 @@
+.tabela-programacao {
+    table-layout: fixed;
+    text-align: center;
+    display: table;
+}
+
+.programacao-titulo {
+    height: 50px;
+    width: 100%;
+}
+
+.titulo-coop {
+}
+
+.data-base-titulo {
+    grid-area: data-base-titulo;
+    margin-top: -6px;
+}
+
+.card-header {
+    font-size: 11px;
+    display: grid;
+    grid-template-areas:
+"titulo-card icone-lixeira";
+    margin-bottom: -2px;
+    margin-left: -1px;
+}
+
+
+.grid-card {
+    display: grid;
+    grid-template-columns: 43px 43px 81px 81px 97px 160px 190px 40px 34px;
+    background-color: #083642 !important;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "titulo-programacao escritorio estiqueta-execucao etiqueta-em-revisao etiqueta-revisao av-critica btn-parecer btn-editar icone-lixeira";
+}
+
+.escritorio {
+    grid-area: escritorio;
+    cursor: text !important;
+}
+
+.escritorio:hover {
+    grid-area: escritorio;
+    cursor: text !important;
+    color: white !important;
+}
+
+.btn-parecer {
+    grid-area: btn-parecer;
+}
+
+.av-critica {
+    grid-area: av-critica;
+}
+
+.estiqueta-execucao {
+    grid-area: estiqueta-execucao;
+
+}
+
+.etiqueta-revisao {
+    grid-area: etiqueta-revisao;
+
+}
+
+.etiqueta-em-revisao {
+    grid-area: etiqueta-em-revisao;
+
+}
+
+.btn-editar {
+    grid-area: btn-editar;
+}
+
+.titulo-programacao {
+    grid-area: titulo-programacao;
+    cursor: text !important;
+
+}
+
+.titulo-programacao:hover{
+    color:white !important;
+}
+
+.icone-lixeira {
+    grid-area: icone-lixeira;
+}
+
+.button_top {
+    --button_radius: 0.75em;
+    --button_color: transparent;
+    --button_outline_color: white;
+    height: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0;
+    padding-top: 4px;
+    margin-top: 2px;
+    margin-bottom: -2px;
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid var(--button_outline_color);
+    border-radius: var(--button_radius);
+    padding: 6px;
+    background: var(--button_color);
+    color: var(--button_outline_color);
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+}
+
+
+.anoBaseVisualizacaoProgramacao {
+    margin-left: 66px;
+    margin-top: -26px;
+    padding: 1px;
+    height: 28px;
+    width: 136px;
+    text-align-last: center;
+    font-size: 15px;
+}
+
+.card-header-colaboradores {
+    padding: 6px;
+    background: #27515C !important;
+    display: grid;
+    grid-template-columns: 173px 350px;
+    grid-template-areas:
+      "titulo-card icone-lixeira";
+    margin-left: -1px;
+    margin-bottom: -2PX;
+}
+
+.gestor-programacao {
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+.lista-gestor {
+    font-weight: bold;
+    font-size: 11px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-left: 1px;
+    padding-left: 0;
+    margin-bottom: -1px;
+    min-height: 22px;
+    color: black;
+}
+
+.lista-csa {
+    font-weight: bold;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-left: 1px;
+    padding-left: 0;
+    margin-bottom: -1px;
+    min-height: 33px;
+}
+
+.titulo-card {
+    grid-area: titulo-card;
+    font-size: 11px;
+    color: white;
+
+}
+
+.icone-lixeira {
+    grid-area: icone-lixeira;
+    text-align: right;
+    align-self: center;
+}
+
+.adicionar-colaboradores {
+    text-align: left;
+    content-visibility: hidden;
+}
+
+.botao-programacao {
+    vertical-align: bottom;
+    margin-bottom: -13px;
+}
+
+.container-programacao {
+    display: grid;
+    min-width: 1px;
+
+    gap: 0 0;
+    grid-template-areas:
+      "blocoEsquerdo blocoDireito";
+}
+
+.blocoEsquerdo {
+    grid-area: blocoEsquerdo;
+    margin-right: 15px;
+}
+
+.blocoDireito {
+    grid-area: blocoDireito;
+    width: auto;
+}
+
+.tabela-programacao td {
+    padding: 2px;
+    color: black;
+    text-align: -webkit-left;
+    border-top: 1px solid #e3e6f0;
+    min-width: 10px;
+    height: 26px;
+}
+
+.tipo-servico{
+    height: 40px;
+}
+
+.select-tipo-servico{
+    border: solid 1px #d1d3e2;
+    border-radius: 0.35rem;
+    height: 28px;
+    font-size: 15px;
+    text-align-last: center;
+    margin-left: 66px;
+    margin-top: -26px;
+    padding: 1px;
+    padding-right: 7px;
+}
+
+.ano-base {
+    margin-left: 4%;
+    height: 40px;
+}
+
+
+.select-mostrar{
+    padding: 0;
+    padding-right: 7px;
+    padding-top: 2px;
+    text-align-last: center;
+    border-radius: 0.35rem;
+    font-size: 15px;
+    height: 30px;
+    margin-top: -1px;
+    border: solid 1px #d1d3e2;
+}
+
+.mostrar {
+    margin-left: 40%;
+    height: 40px;
+
+}
+
+.sem-background{
+    background: none !important;
+}
+
+.tabela-colaboradores-programacao {
+    table-layout: fixed;
+    text-align: center;
+    display: table;
+    color: black;
+}
+
+.tabela-colaboradores-programacao td {
+    min-width: 50px;
+}
+
+.tabela-colaboradores-programacao td {
+    padding: .50rem;
+    border-top: 1px solid #e3e6f0;
+}
+
+.container-programacao-conteudo {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.card-header-programacao {
+    padding: 5px;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7f7;
+    color: #777777;
+    border: none;
+}
+
+.grupo-lista-programacao {
+    padding: 1px;
+    font-size: 12px;
+    background: #f7f7f7;
+    text-align: center;
+    color: #777777;
+}
+
+.totalizador {
+    background: #e4e0e0;
+}
+
+.marginTop {
+    margin-top: 0;
+}
+
+.btn-editar {
+    border: none;
+    border-radius: 6px;
+    align-self: center;
+    font-size: 16px;
+    transition: 0.3s;
+    margin-left: auto;
+}
+
+.btn-editar:hover {
+    background-color: transparent;
+}
+
+.av-critica {
+    width: 130px;
+}
+
+.av-critica:hover {
+    background-color: gray;
+    color: #fbf3f3;
+}
+
+.btn-parecer:hover {
+    background-color: gray;
+    color: #fbf3f3;
+}
+
+/*noinspection ALL*/
+.fa-trash-alt {
+    vertical-align: -webkit-baseline-middle;
+    font-size: 16px;
+}
+
+.alerta-csa {
+    width: max-content;
+    background: none;
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: 30%;
+    color: red;
+    margin-top: -19px;
+    margin-bottom: 5px;
+}

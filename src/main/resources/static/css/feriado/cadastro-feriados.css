@@ -1,0 +1,77 @@
+.tabela-recesso {
+    width: 90%;
+    margin-left: 3%;
+}
+
+.container-feriados {
+    padding-top: 50px;
+    margin-left: 19%;
+    margin-right: 10%;
+    font-size: small;
+}
+
+.cadastro-recesso {
+    display: grid;
+    margin-bottom: 18px;
+    grid-template-columns: 500px 300px;
+    grid-template-rows: 1fr;
+    gap: 0 0;
+    grid-template-areas:
+      "titulo input";
+}
+.select-mult{
+    border: none;
+}
+
+.titulo {
+    grid-area: titulo;
+}
+
+.input {
+    grid-area: input;
+}
+
+.custom-file-label {
+    margin: 0;
+}
+
+
+.lixo-feriados {
+    text-align-last: center;
+}
+
+.like {
+    font-size: 15px;
+}
+
+.remove {
+    margin-left: 15px;
+    font-size: 15px;
+}
+
+.input-feriado {
+    margin-left: 70%;
+    margin-top: -4%;
+
+}
+
+.load-ferido {
+    text-align: center;
+    margin-bottom: -17px;
+    margin-top: -43px;
+}
+
+.btn-importacoes {
+    height: 35px;
+    font-size: 14px;
+    background: gray;
+    color: white;
+    margin-top: 3px;
+
+}
+
+.btn-importacoes:hover {
+    background-color: #048930;
+    color: white;
+    transition: 0.3s;
+}

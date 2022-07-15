@@ -1,0 +1,50 @@
+#tabela-atividade{
+margin-bottom: 10%;
+margin-top: 2%;
+font-size: small;
+margin-left: -7px;
+}
+
+.container-atividade{
+padding-top: 25px;
+margin-left: 19%;
+margin-right: 8%;
+}
+
+
+.lixo-atividade{
+text-align-last: center;
+}
+
+.like{
+    font-size: 15px;
+}
+
+.remove{
+    margin-left: 15px;
+    font-size: 15px;
+}
+
+.input-atividade{
+    margin-left: 69%;
+    margin-bottom: -6%;
+    margin-top: -2%;
+}
+
+.load-atividade{
+    text-align: center;
+    margin-top:-40px;
+}
+.btn-importacoes{
+    height: 35px;
+    font-size: 14px;
+    background: gray;
+    color: white;
+    margin-top: 3px;
+
+}
+.btn-importacoes:hover{
+    background-color: #048930;
+    color: white;
+    transition: 0.3s;
+}

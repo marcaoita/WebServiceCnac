@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<head>
+    <title>Cadastro de Feriados</title>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/feriado/cadastro-feriados.css" rel="stylesheet"/>
+    <link href="css/ferias/cadastro-ferias.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container-feriados">
+    <div class="cadastro-feriados">
+        <div class="titulo">
+            <h2>Cadastro de Feriados</h2>
+            <div style="float: right;">
+                <p class="importacao-em-lote-titulo" style="margin-bottom: 0;">Importação em Lote</p>
+
+                <div class="input-group" style="width: 304px;float:right;margin-top: -20px">
+                    <form class="div-importacao" action="programacao-lote/modelo-CSV" method="GET">
+                        <button class="btn-ferias" type="submit" style="display: flex">
+                            <em class="fas fa-download" style="margin-right: 5px;" type="submit"></em>
+                            <p type="submit" class="baixar-modelo">Baixar modelo</p>
+                        </button>
+                    </form>
+
+                    <div style="margin-right: 15px"></div>
+                    <div class="div-importacao">
+                        <button class="btn-ferias" type="submit" style="display: flex"
+                                tabindex="0" onclick="loadModal('programacao-lote/modal', {message: 'Não foi possível carregar o modal.'});">
+                            <em class="fas fa-upload up-load"></em>
+                            <p class="baixar-modelo">Enviar arquivo</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="sidebar-divider my-0" style="margin-top: 7px;margin-left: 0;width: auto;">
+
+    <form action="/feriados/add" class="form-row" id="myform" method="post" th:object="${feriado}" url="feriados/list">
+        <div class="form-group col-md-6" id="errnome">
+            <label for="nome">Nome</label>
+            <input class="form-control" id="nome" th:field="*{nome}" type="text"/>
+        </div>
+
+        <div class="form-group col-md-6" id="errdtRecesso">
+            <label for="dtRecesso">Data do feriados</label>
+            <input class="form-control" id="dtRecesso" th:field="*{dtRecesso}" type="date"/>
+        </div>
+
+        <div class="form-group col-md-6" id="erresfera" style="width: 100%">
+            <label for="tipoFeriado">Esfera</label>
+            <select class="form-control" id="tipoFeriado" th:field="*{tipoFeriado}">
+                <option th:value="NACIONAL">Nacional</option>
+                <option th:value="ESTADUAL">Estadual</option>
+                <option th:value="MUNICIPAL">Municipal</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-6" id="erruf">
+            <label for="uf">UF</label>
+            <input class="form-control" id="uf" th:field="*{uf}" type="text"/>
+        </div>
+
+        <div class="form-group col-md-6" id="errmunicipio">
+            <label for="municipio">Município</label>
+            <input class="form-control" id="municipio" th:field="*{municipio}" type="text"/>
+        </div>
+
+        <button
+                class="btn btn-dark" style="height: 38px; margin-top: 31px; margin-left: 20px" type="submit">Salvar
+        </button>
+    </form>
+
+
+<div class="container1" style="width: 100%;margin-top: 30px;">
+    <div style="display: flex;align-items: center;place-content: space-between;margin-bottom: -19px;">
+    <h2 style="width: 50%;"> Feriados</h2>
+        <div class="form-group" id="errmes" style="width: 187px;margin-bottom: 0px;font-size: 16px;">
+            <select class="select-mult" data-actions-box="true" data-style="btn-geral-claro" data-width="187px"
+                    id="mes"  multiple onChange="loadList('feriado/list')" title="Mês">
+                <option value="1">Janeiro</option>
+                <option value="2">Fevereiro</option>
+                <option value="3">Março</option>
+                <option value="4">Abril</option>
+                <option value="5">Maio</option>
+                <option value="6">Junho</option>
+                <option value="7">Julho</option>
+                <option value="8">Agosto</option>
+                <option value="9">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
+            </select>
+        </div>
+        <div class="form-group" id="erranos" style="width: 187px;margin-bottom: 0px;">
+            <select class="form-control select-mult" data-live-search="true" id="anoBase"
+                    name="anoBase" onchange="loadList('feriado/list')" data-style="btn-geral-claro">
+                <option class="bs-title-option" value="selecione" >Anos disponíveis</option>
+                <option th:each="ano : ${anos}" th:utext="${ano}" th:value="${ano}">
+                </option>
+            </select>
+        </div>
+        <button id="btnExport" class="btn-geral-claro" style="float:right;height: 29px;width: 187px;">Exportar Tabela em Excel</button>
+    </div>
+    <table aria-label="tabela-feriados" class="table table-hover table-sm" id="dados"
+           style="font-size: 14px;width: 100%;">
+        <thead>
+        <tr>
+            <th data-field="dtRecesso" data-sortable="true" data-formatter="dataAtualFormatada" data-width="60" scope="col">Data <em  class="fas fa-sort"></em></th>
+            <th data-field="nome" data-sortable="true" data-width="200" scope="col">Nome <em class="fas fa-sort"></em>  </th>
+            <th data-field="tipoFeriado" data-sortable="true" data-width="60" scope="col">Tipo <em  class="fas fa-sort"></em></th>
+            <th class="centro" data-field="uf" data-sortable="true" data-width="20" scope="col">UF <em  class="fas fa-sort"></em></th>
+            <th data-field="municipio" data-sortable="true" data-width="40" scope="col">Município <em  class="fas fa-sort"></em></th>
+            <th class="lixo-feriados" data-events="operateEvents" data-field="operate" data-formatter="operateFormatter"  data-width="50">Operações</th>
+        </tr>
+        </thead>
+    </table>
+
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+<script src="js/generic/nome-arquivo.js"></script>
+<script src="js/feriado/funcoes.js"></script>
+<script src="js/generic/send-entity.js"></script>
+<script src="js/generic/send-post.js"></Script>
+<script src="js/generic/get-filters.js"></Script>
+<script src="js/utils/funcoesUteis.js"></script>
+<script src="js/generic/send-delete.js"></Script>
+<script src="js/generic/monta-tabela.js"></script>
+<script src="js/plugins/table2excel/jquery.table2excel.js"></script>
+<script src="js/utils/exportTableToExcel.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+        loadList("feriado/list");
+
+        $('#btnExport').on('click', function (e) {
+            e.preventDefault();
+            Export('dados', 'feriados');
+        });
+
+    });
+</script>
+
+<script>
+
+    function operateFormatter(value, row, index) {
+        return [
+            '<a class="like" href="javascript:void(0)" title="Editar">',
+            '<i class="fas fa-pen"></i>',
+            '</a>  ',
+            '<a class="remove" href="javascript:void(0)" title="Excluir">',
+            '<i class="fa fa-trash"></i>',
+            '</a>'
+        ].join('')
+    }
+
+    window.operateEvents = {
+        'click .like': function (e, value, row, index) {
+            setValues(row)
+        },
+        'click .remove': function (e, value, row, index) {
+            deleteFeriado(row.cpfCnpj)
+        }
+    }
+
+    $(function () {
+        $('#dados').bootstrapTable()
+    })
+
+</script>
+

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<link href="css/home/inicio.css" rel="stylesheet">
+<link href="css/utils/estilo-geral.css" rel="stylesheet">
+
+<head>
+    <title>Início WEB CNAC</title></head>
+
+<div class="jumbotron jumbotron-fluid jumbotron-inicio">
+    <div class="container" style="margin-left: 13px;font-size: 10px;">
+        <h1 class="display-4 titulo-inicio" style="font-size: 41px;color: white;">Bem-vindo(a) ao WEB CNAC!</h1>
+    </div>
+</div>
+
+<div class="container-inicio">
+    <h2 class="titulo-inicio mb-0 text-gray-800" style="font-size: 25px;">Programação</h2>
+    <div class="row" style="justify-content: left;margin-left: 10px;">
+        <div class="card green" onclick="carregar('programacao-horizontal/index')">
+            <h2 class="titulo-card-inicio">Programação Horizontal</h2>
+            <p>Dados da programação em fomato de tabela</p>
+            <img alt="tabela" class="image" src="img/icones/tabela.png"/>
+        </div>
+
+        <div class="card green" onclick="carregar('programacao-vertical/index')">
+            <h2 class="titulo-card-inicio">Programação Vertical</h2>
+            <p>Dados da programação em colunas</p>
+            <img alt="colunas" class="image" src="img/icones/bar-chart.png"/>
+        </div>
+    </div>
+
+    <h2 class="titulo-inicio mb-0 text-gray-800" style="font-size: 25px;">Cadastro</h2>
+    <div class="row" style="margin-left:10px;">
+        <div class="card green" onclick="carregar('escopo/index')">
+            <h2 class="titulo-card-inicio">Escopo</h2>
+            <p>Cadastro de escopos</p>
+            <img alt="escopos" class="image" src="img/icones/hierarquia.png"/>
+        </div>
+        <div class="card green" onclick="carregar('atividade/index')">
+            <h2 class="titulo-card-inicio">Atividades</h2>
+            <p>Cadastro de atividades</p>
+            <img alt="colunas" class="image" src="img/icones/to-do-list.png"/>
+        </div>
+        <div class="card green" onclick="carregar('cliente/index')">
+            <h2 class="titulo-card-inicio">Clientes</h2>
+            <p>Cadastro de clientes</p>
+            <img alt="clientes" class="image" src="img/icones/colaborar.png"/>
+        </div>
+        <div class="card green" onclick="carregar('colaborador/index')">
+            <h2 class="titulo-card-inicio">Colaborador</h2>
+            <p>Cadastro de colaboradores</p>
+            <img alt="colunas" class="image" src="img/icones/empregado.png"/>
+        </div>
+        <div class="card green" onclick="carregar('cargo/index')">
+            <h2 class="titulo-card-inicio">Cargo</h2>
+            <p>Cadastro de cargos</p>
+            <img alt="cargos" class="image" src="img/icones/multitarefa.png"/>
+        </div>
+        <div class="card green" onclick="carregar('feriado/index')">
+            <h2 class="titulo-card-inicio">Feriados</h2>
+            <p>Cadastro de feriados</p>
+            <img alt="feriados" class="image" src="img/icones/feriados.png"/>
+        </div>
+        <!-- <div class="card green" onclick="carregar('AGO/index')">
+           <h2 class="titulo-card-inicio">AGO</h2>
+           <p>Cadastro de AGO</p>
+           <img class="image" src="img/icones/reuniao.png" alt="AGO" />
+       </div> -->
+        <div class="card green" onclick="carregar('programacao-lote/ferias-treinamento')">
+            <h2 class="titulo-card-inicio">Férias</h2>
+            <p>Cadastro de Férias</p>
+            <img alt="ferias" class="image" src="img/icones/ferias-de-verao.png"/>
+        </div>
+    </div>
+    <h2 class="titulo-inicio mb-0 text-gray-800" style="font-size: 25px;">Relatórios</h2>
+    <div class="row" style="margin-left: 10px;">
+        <div class="card green" onclick="carregar('relatorios/clientes-sem-programacao')">
+            <h2 class="titulo-card-inicio">Clientes sem Programação</h2>
+            <p>Tabela com os clientes sem programação</p>
+            <img alt="parametros" class="image" src="img/icones/tabela-de-dados.png"/>
+        </div>
+        <div class="card green" onclick="carregar('controle-geracao-amostra/index')">
+            <h2 class="titulo-card-inicio">Controle de Geração de Amostras</h2>
+            <p>Tabela com o controle de geração de amostras</p>
+            <img alt="sem-amostra" class="image" src="img/icones/prancheta.png"/>
+        </div>
+        <div class="card green" onclick="carregar('relatorios/relatorio-csa')">
+            <h2 class="titulo-card-inicio">Relatório CSA</h2>
+            <p>Relatório destinado ao CSA</p>
+            <img alt="relatorio-csa" class="image" src="img/icones/relatorio-csa.png"/>
+        </div>
+    </div>
+
+    <h2 class="titulo-inicio mb-0 text-gray-800" style="font-size: 25px;">Monitoramentos</h2>
+    <div class="row" style="margin-left: 10px;">
+
+        <div class="card green" onclick="carregar('monitoramento/av-critica')">
+            <h2 class="titulo-card-inicio">Auditoria Cooperativa</h2>
+            <p>Visualização de avaliações críticas</p>
+            <img alt="av-critica" class="image" src="img/icones/teste.png"/>
+        </div>
+
+        <div class="card green" onclick="carregar('monitoramento/catalogacao')">
+            <h2 class="titulo-card-inicio">Catalogações</h2>
+            <p>Catalogações das auditorias</p>
+            <img alt="catalogacao" class="image" src="img/icones/catalogo.png"/>
+        </div>
+
+        <div class="card green" onclick="carregar('monitoramento/graficos')">
+            <h2 class="titulo-card-inicio">Gráficos</h2>
+            <p>Gráficos gerenciais</p>
+            <img alt="graficos" class="image" src="img/icones/grafico-de-barras.png"/>
+        </div>
+
+        <div class="card green" onclick="carregar('monitoramento/monitoramento-atividade')">
+            <h2 class="titulo-card-inicio">Monitoramento de Atividades</h2>
+            <p>Tabela para monitoramento de atividades</p>
+            <img alt="monitoramento-atividade" class="image" src="img/icones/plano.png"/>
+        </div>
+
+        <div class="card green" onclick="carregar('parecer/index')">
+            <h2 class="titulo-card-inicio">Auditoria Externa</h2>
+            <p>Visualização e edição de pareceres</p>
+            <img alt="pareceres" class="image" src="img/icones/auditoria.png"/>
+        </div>
+    </div>
+
+    <h2 class="titulo-inicio mb-0 text-gray-800" style="font-size: 25px;">Obrigações Acessórias</h2>
+    <div class="row1" onclick="carregar('obrigacoes-acessorias/index')">
+        <div class="card green">
+            <h2 class="titulo-card-inicio">7110</h2>
+            <p>Gerar o 7110</p>
+            <img alt="7110" class="image" src="img/icones/relatorio.png"/>
+        </div>
+    </div>
+
+    <h2 class="titulo-inicio mb-0 text-gray-800" style="font-size: 25px;">Configurações</h2>
+    <div class="row1" onclick="carregar('configuracao/index')">
+        <div class="card green">
+            <h2 class="titulo-card-inicio">Parâmetros</h2>
+            <p>Configuração de parâmetros</p>
+            <img alt="parametros" class="image" src="img/icones/filtro.png"/>
+        </div>
+    </div>
+</div>
+
+
+</html>

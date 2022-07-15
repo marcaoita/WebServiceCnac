@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<head>
+    <title>Cadastro de Atividades</title>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/atividade/cadastro-atividades.css" rel="stylesheet"/>
+    <link href="css/ferias/cadastro-ferias.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container-atividade">
+    <div class="cadastro-atividade">
+        <h2>Cadastro de Atividades
+            <div class="load load-atividade">
+                <img src="img/utilitarios/Spinner-3.gif" style="width: 50px;" alt="carregando">
+            </div>
+        </h2>
+
+        <div style="float: right;">
+            <p class="importacao-em-lote-titulo" style="margin-bottom: 0;">Importação em Lote</p>
+
+            <div class="input-group" style="width: 304px;float:right;margin-top: -20px">
+                <form class="div-importacao" action="programacao-lote/modelo-CSV" method="GET">
+                    <button class="btn-ferias" type="submit" style="display: flex">
+                        <em class="fas fa-download" style="margin-right: 5px;" type="submit"></em>
+                        <p type="submit" class="baixar-modelo">Baixar modelo</p>
+                    </button>
+                </form>
+
+                <div style="margin-right: 15px"></div>
+                <div class="div-importacao">
+                    <button class="btn-ferias" type="submit" style="display: flex"
+                            tabindex="0" onclick="loadModal('programacao-lote/modal', {message: 'Não foi possível carregar o modal.'});">
+                        <em class="fas fa-upload up-load"></em>
+                        <p class="baixar-modelo">Enviar arquivo</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <hr class="sidebar-divider my-0" style="margin-top: 7px;margin-left: 0;width: auto;">
+
+        <div class="form-row align-items-center">
+            <div class="form-group col-md-3" style="margin-top:-1px;">
+                <label class="titulo-cadastro-programacao" for="anoBaseVisualizacao">Ano base Seleção
+                </label>
+                <select class="form-control" id="anoBaseVisualizacao" onchange="loadList('atividade/list')">
+                    <option th:each="ano : ${anoBase}"
+                            th:selected="${ano} == ${#dates.year(#dates.createNow())}"
+                            th:utext="${ano}"
+                            th:value="${ano}">
+                    </option>
+                </select>
+            </div>
+
+            <form
+                    action="/atividade/add"
+                    class="form-row"
+                    id="myform"
+                    method="post"
+                    th:object="${atividade}"
+                    url="atividade/list"
+            >
+                <div class="form-group col-md-6" id="errnumContratoOrig">
+                    <label for="numContratoOrig">Número Contrato de Origem</label>
+                    <input
+                            class="form-control"
+                            id="numContratoOrig"
+                            th:field="*{numContratoOrig}"
+                            type="text"
+                    />
+                </div>
+
+                <div
+                        class="form-group col-md-6"
+                        id="errclienteDisp"
+                        style="width: 100%"
+                >
+                    <label for="clienteDisp">Cliente</label>
+                    <select
+                            class="form-control select-mult"
+                            data-live-search="true"
+                            id="clienteDisp"
+                            th:field="*{cnpjCliente}"
+                    >
+                        <option class="bs-title-option" value="selecione">
+                            Selecione
+                        </option>
+                        <option
+                                th:each="cliente : ${clientes}"
+                                th:utext="${cliente.numCoop} + ' ' + ${cliente.siglaCoop}"
+                                th:value="${cliente.cnpjCliente}"
+                        ></option>
+                    </select>
+                </div>
+
+                <div
+                        class="form-group col-md-6"
+                        id="errescopoDisp"
+                        style="width: 100%"
+                >
+                    <label for="escopoDisp">Escopo</label>
+                    <select
+                            class="form-control"
+                            id="escopoDisp"
+                            th:field="*{numEscopo}"
+                    >
+                        <option class="bs-title-option" value="selecione">
+                            Selecione
+                        </option>
+                        <option
+                                th:each="escopo : ${escopos}"
+                                th:utext="${escopo.numEscopo} + ' ' + ${escopo.tipoEscopo}"
+                                th:value="${escopo.numEscopo}"
+                        ></option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6" id="errHorasVendidas">
+                    <label for="HorasVendidas">Horas Vendidas</label>
+                    <input
+                            class="form-control"
+                            id="HorasVendidas"
+                            th:field="*{HorasVendidas}"
+                    />
+                </div>
+
+                <div class="form-group col-md-6" id="erranoBase">
+                    <label for="anoBase">Ano Base</label>
+                    <input class="form-control" id="anoBase" th:field="*{anoBase}"/>
+                </div>
+
+                <div
+                        class="form-group col-md-6"
+                        id="errtipoServico"
+                        style="width: 100%"
+                >
+                    <label for="tipoServico">Tipo de Serviço</label>
+                    <select
+                            class="form-control"
+                            id="tipoServico"
+                            th:field="*{tipoServico}"
+                    >
+                        <option class="bs-title-option" value="selecione">
+                            Selecione
+                        </option>
+                        <option th:value="AC">AC</option>
+                        <option th:value="AE">AE</option>
+                        <option th:value="ES">ES</option>
+                        <option th:value="TI">TI</option>
+                    </select>
+                </div>
+
+                <div
+                        class="form-group col-md-6"
+                        id="errAmpliacaoEscopo"
+                        style="width: 100%"
+                >
+                    <label for="ampliacaoEscopo">Ampliação de Escopo</label>
+                    <select
+                            class="form-control"
+                            id="ampliacaoEscopo"
+                            onchange="onChangeAmpliacaoEscopo()"
+                            th:field="*{ampliacaoEscopo}"
+                    >
+                        <option th:value=false>NÃO</option>
+                        <option th:value=true>SIM</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6" id="errdescricaoAmpliacaoEscopo">
+                    <label for="descricaoAmpliacaoEscopo">Descrição das Ampliações de Escopo</label>
+                    <input
+                            class="form-control"
+                            id="descricaoAmpliacaoEscopo"
+                            th:field="*{descricaoAmpliacaoEscopo}"
+                            type="text"
+                    />
+                </div>
+
+                <div
+                        class="form-group col-md-6"
+                        id="errrequisitanteAmpliacaoEscopo"
+                        style="width: 100%; display: none;"
+                >
+                    <label for="requisitanteAmpliacaoEscopo">Requisitante Ampliação Escopo</label>
+                    <select
+                            class="form-control"
+                            id="requisitanteAmpliacaoEscopo"
+                            th:field="*{requisitanteAmpliacaoEscopo}"
+                    >
+                        <option value="selecione">Selecione</option>
+                        <option th:value="01">1 - Auditoria Cooperativa</option>
+                        <option th:value="02">2 - Cooperativa</option>
+                        <option th:value="03">3 - Cooperativa a pedido da central</option>
+                        <option th:value="04">4 - Cooperativa a pedido da confederação</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6" id="errstatus" style="width: 100%">
+                    <label for="status">Status Atividade</label>
+                    <select
+                            class="form-control"
+                            id="status"
+                            placeholder="Selecione"
+                            th:field="*{statusAtividade}"
+                            title="Selecione"
+                    >
+                        <option class="bs-title-option" value="selecione">
+                            Selecione
+                        </option>
+                        <option th:value="ATIVA">Ativa</option>
+                        <option th:value="SUSPENSA">Suspensa</option>
+                        <option th:value="CANCELADA">Cancelada</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6" id="errdtRescisao">
+                    <label for="dtRescisao">Data Rescisão</label>
+                    <input
+                            class="form-control"
+                            id="dtRescisao"
+                            th:field="*{dtRescisao}"
+                            type="date"
+                    />
+                </div>
+
+                <div style="height: 57px;margin-left: 669px;margin-top: 10px;">
+                    <button class="btn btn-dark" style="height: 40px;margin-right: 7px;" type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+        <div class="container1" id="tabela-atividade">
+
+            <div class="titulo">
+                <h2>Lista de atividades
+                    <div style="float: right;">
+                        <button id="btnExport" style="width: 177px;">Exportar Tabela em Excel</button>
+                    </div>
+                </h2>
+            </div>
+
+            <table aria-label="tabela-atividade" class="table table-hover tablesorter" data-toggle="table" id="dados"
+                   style="width: 100%;">
+                <thead>
+                <tr>
+                    <th data-field="numContratoOrig" data-sortable="true" scope="col">Número do Contrato <em
+                            class="fas fa-sort"></em></th>
+                    <th data-field="cliente.cnpjCliente" data-sortable="true" scope="col">Cnpj Cooperativa <em
+                            class="fas fa-sort"></em></th>
+                    <th class="centro" data-field="cliente.numCoop" data-sortable="true" scope="col">Número Cooperativa
+                        <em class="fas fa-sort"></em></th>
+                    <th class="centro" data-field="cliente.siglaCoop" data-sortable="true" scope="col">Número Cooperativa
+                        <em class="fas fa-sort"></em></th>
+                    <th class="centro" data-field="escopo.numEscopo" data-sortable="true" scope="col">Num Escopo <em
+                            class="fas fa-sort"></em></th>
+                    <th class="centro" data-field="escopo.apelido" data-sortable="true" scope="col">Apelido Escopo <em
+                            class="fas fa-sort"></em></th>
+                    <th class="centro" data-field="horasVendidas" data-sortable="true" scope="col">Horas Vendidas <em
+                            class="fas fa-sort"></em></th>
+                    <th class="centro" data-field="anoBase" data-sortable="true" scope="col">Ano Base <em
+                            class="fas fa-sort"></em></th>
+                    <th class="centro" data-field="tipoServico" data-sortable="true" scope="col">Tipo de Serviço <em
+                            class="fas fa-sort"></em></th>
+                    <th class="centro" data-field="ampliacaoEscopo" data-sortable="true" scope="col">Amplicação de
+                        Escopo <em class="fas fa-sort"></em></th>
+                    <th class="centro" data-field="descricaoAmpliacaoEscopo" data-sortable="true" scope="col">Descrição
+                        das Ampliações de Escopo <em class="fas fa-sort"></em></th>
+                    <th class="centro" data-field="requisitanteAmpliacaoEscopo" data-sortable="true" data-width="142"
+                        scope="col">Requisitante Ampliação Escopo <em class="fas fa-sort"></em></th>
+                    <th class="centro" data-field="statusAtividade" data-sortable="true" scope="col">Status Atividade
+                        <em class="fas fa-sort"></em></th>
+                    <th data-field="dtRescisao" data-sortable="true" scope="col">Dt Rescisão <em
+                            class="fas fa-sort"></em></th>
+                    <th class="lixo-atividade" data-events="operateEvents" data-field="operate"
+                        data-formatter="operateFormatter"
+                        data-width="95">Operações
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script src="js/generic/nome-arquivo.js"></script>
+<script src="js/atividade/funcoes.js"></script>
+<script src="js/generic/send-entity.js"></script>
+<script src="js/generic/load-modal.js"></script>
+<script src="js/generic/send-post.js"></Script>
+<script src="js/generic/get-filters.js"></Script>
+<script src="js/utils/funcoesUteis.js"></script>
+<script src="js/generic/send-delete.js"></Script>
+<script src="js/generic/monta-tabela.js"></script>
+<script src="js/plugins/table2excel/jquery.table2excel.js"></script>
+<script src="js/utils/exportTableToExcel.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+        loadList("atividade/list");
+
+        $('#btnExport').on('click', function (e) {
+            e.preventDefault();
+            Export('dados', 'atividades');
+        });
+
+    });
+</script>
+
+<script>
+    const $table = $('#dados');
+
+    function operateFormatter(value, row, index) {
+        return [
+            '<a class="like" href="javascript:void(0)" title="Editar">',
+            '<i class="fas fa-pen"></i>',
+            '</a>  ',
+            '<a class="remove" href="javascript:void(0)" title="Excluir">',
+            '<i class="fa fa-trash"></i>',
+            '</a>'
+        ].join('')
+    }
+
+    window.operateEvents = {
+        'click .like': function (e, value, row, index) {
+            setValues(row)
+        },
+        'click .remove': function (e, value, row, index) {
+            deleteAtividade(row.cliente.cnpjCliente, row.escopo.numEscopo, row.anoBase)
+        }
+    }
+
+    $(function () {
+        $('#dados').bootstrapTable()
+    })
+
+</script>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<link href="css/utils/estilo-geral.css" rel="stylesheet">
+<link href="css/programacao/horizontal/programacao-horizontal.css" rel="stylesheet">
+
+<head>
+    <title>CNAC - Dados Tabelados</title>
+</head>
+
+<div class="container-dados-tabelados" style="width: max-content;">
+    <div class="head-dados-tabelados" style="margin-top:-78px;">
+        <div class="month-indicator" style="margin-left: -2px;margin-bottom: 4px;">
+            <time class="titulo-dados-tabelados" datetime="2020-02"> Programação Horizontal</time>
+            <div class="load" style="margin-bottom: -24px;">
+                <img src="img/utilitarios/Spinner-3.gif" style="width: 50px; margin-left: 33%; margin-top:-4%;" alt="carregando">
+            </div>
+        </div>
+        <hr class="sidebar-divider my-0" style="margin-top: 7px;margin-left: 0;width: auto;">
+        <div class="calendar" style="margin-left: -35px;">
+            <div class="indicador1">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Colaboradores por Escritório</label>
+                        <select class="select-mult" data-actions-box="true" data-style="btn-primary"
+                                data-width="213px" id="colaboradorEscritorio" multiple
+                                onChange="loadList('programacao-horizontal/list')"
+                                title="Selecione">
+                            <option value="SP">São Paulo</option>
+                            <option value="BSB">Brasília</option>
+                            <option value="BH">Belo Horizonte</option>
+                            <option value="CSA">CSA</option>
+                            <option value="TI">TI</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <div class="indicador2" style="z-index: 1;">
+                <form method="post">
+                    <label class="descritivo-filtro">Tipo de Serviço</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary" data-width="150px"
+                            id="tipoServico" multiple onChange="loadList('programacao-horizontal/list')"
+                            title="Selecione">
+                        <option selected>AC</option>
+                        <option selected>AE</option>
+                        <option selected>ES</option>
+                        <option>TI</option>
+                        <option>CSA</option>
+                        <option>TREINAMENTO (TR)</option>
+                        <option value="FERIAS">FÉRIAS (FR)</option>
+                        <option value="LICENCA">LICENÇAS (LI)</option>
+                        <option value="COMPENSACAO">COMPENSAÇÃO (CP)</option>
+                        <option>ACOMPANHAMENTO (ACM)</option>
+                        <option>RESERVA (RE)</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="indicador3" style="z-index: 1;">
+                <form method="post">
+                    <label class="descritivo-filtro">Ano base</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary" data-width="150px"
+                            id="anoBase" onChange="loadList('programacao-horizontal/list')"
+                            title="Ano Base">
+                        <option th:each="ano : ${anoBase}" th:selected="${ano} == ${#dates.year(#dates.createNow())}"
+                                th:utext="${ano}" th:value="${ano}"></option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="indicador4" style="z-index: 1;">
+                <form method="post">
+                    <label class="descritivo-filtro">Mês</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary" data-width="150px"
+                            id="mes"
+                            multiple onChange="loadList('programacao-horizontal/list')"
+                            title="Selecione">
+                        <option value="1">Janeiro</option>
+                        <option value="2">Fevereiro</option>
+                        <option value="3">Março</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Maio</option>
+                        <option value="6">Junho</option>
+                        <option value="7">Julho</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="indicador5">
+                <form method="post">
+                    <label class="descritivo-filtro">Gestores</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary"
+                            data-width="150px"
+                            id="gestoresFilter" multiple name="test" onChange="loadList('programacao-horizontal/list')"
+                            title="Selecione">
+                        <option disabled>Diretores</option>
+                        <option th:each="d : ${diretores}" th:utext="${d.getNome()}" th:value="${d.getCpfCnpj()}">
+                        </option>
+                        <option data-divider="true"></option>
+                        <option disabled>Gerentes</option>
+                        <option th:each="g : ${gerentes}" th:utext="${g.getNome()}" th:value="${g.getCpfCnpj()}">
+                        </option>
+                        <option data-divider="true"></option>
+                        <option disabled>Supervisores</option>
+                        <option th:each="s : ${supervisores}" th:utext="${s.getNome()}" th:value="${s.getCpfCnpj()}">
+                        </option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="indicador6" style="z-index: 1;">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Programação por Escritório</label>
+                        <select class="select-mult" data-actions-box="true" data-style="btn-primary" data-width="213px"
+                                id="escritorios" multiple
+                                onChange="loadList('programacao-horizontal/list')"
+                                title="Selecione">
+                            <option value="SP">São Paulo</option>
+                            <option value="BSB">Brasília</option>
+                            <option value="BH">Belo Horizonte</option>
+                            <option value="TI">TI</option>
+                            <option value="CSA">CSA</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <div class="indicador7" style="z-index: 1;">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Amostra Gerada?</label>
+                        <select class="select-mult" data-actions-box="true" data-style="btn-primary"
+                                data-width="150px" id="amostra"
+                                onChange="loadList('programacao-horizontal/list')"
+                                title="Selecione">
+                            <option></option>
+                            <option value="true">SIM</option>
+                            <option value="false">NÃO</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-left:-17px;margin-bottom: 0; background:#033741;margin-top: -76px;">
+        <div class="card-body" style="font-size: 12px;padding: 0;margin-top: 72px;width: 1750px;background: white;">
+            <div class="table-responsive fixTableHead">
+                <table aria-label="tabela-dados"
+                       class="table tabela-plugin display tablesorter"
+                       data-buttons-align="none" data-buttons-class="chamativo"
+                       data-show-columns="true"
+                       data-show-columns-search="true"
+                       data-show-columns-toggle-all="true" data-show-export="true"
+                       data-toggle="table"
+                       id="dados"
+                       style="color: white;">
+                    <thead>
+                    <tr class="tr-class-1">
+                        <th colspan="10">Cliente</th>
+                        <th colspan="8">Datas</th>
+                        <th colspan="5">Horas</th>
+                        <th colspan="3">% Trabalho</th>
+                        <th colspan="4">Atores</th>
+                    </tr>
+                    <tr>
+                        <th class="centro" data-field="cli.codCentral" data-filter-control="input"
+                            data-sortable="true">Código da Central <em class="fas fa-sort"></em>
+                        </th>
+                        <th class="centro" data-field="anoBase" data-filter-control="input"
+                            data-sortable="true">Ano Base<em class="fas fa-sort"></em>
+                        </th>
+                        <th data-field="cli.cnpjCliente" data-width="65" data-filter-control="input"
+                            data-sortable="true">CNPJ <em
+                                class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="cli.segmentacao" data-filter-control="select"
+                            data-sortable="true">Segmentação <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="cli.numCoop" data-filter-control="input" data-sortable="true"
+                        >
+                            Número Cooperativa <em class="fas fa-sort"></em></th>
+                        <th data-field="cli.siglaCoop" data-filter-control="input" data-sortable="true"
+                            data-width="130">Cooperativa <em class="fas fa-sort"></em></th>
+                        <th data-field="stringEscopos" data-filter-control="input" data-sortable="true"
+                            data-width="230">Escopos <em class="fas fa-sort"></em></th>
+                        <th data-field="cli.municipio" data-filter-control="input" data-sortable="true">Município <em
+                                class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="cli.estado" data-filter-control="select" data-sortable="true"
+                            >Estado <em
+                                class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="tipoServico" data-filter-control="select" data-sortable="true"
+                            >
+                            Tipo Serviço <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="dtBase" data-filter-control="input" data-sortable="true"
+                            data-width="140" >Data
+                            Base da Amostra <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="dtInicio" data-filter-control="select"
+                            data-formatter="dataAtualFormatada"
+
+                            data-sortable="true" data-width="140">Data Início de Programação
+                            <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="dtInicioExe" data-filter-control="select"
+                            data-formatter="dataAtualFormatada"
+                            data-sortable="true" data-width="140">Data Início de Execução in
+                            loco <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="dtFimExe" data-filter-control="select"
+                            data-formatter="dataAtualFormatada" data-width="140"
+                            data-sortable="true" >Data Final de Execução in
+                            loco <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="dtFim" data-filter-control="select"
+                            data-formatter="dataAtualFormatada" data-width="140"
+                            data-sortable="true" >Data Final de Programação <em
+                                class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="diasAtraso" data-width="140" data-sortable="true">Dias de atraso em razão da coop
+                            <em
+                                    class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="dtFinalAuditoria" data-filter-control="select"
+                            data-formatter="dataAtualFormatada" data-width="140"
+                            data-sortable="true" >Data Final Auditoria <em
+                                class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="dtEmissaoRAC" data-filter-control="select"
+                            data-formatter="dataAtualFormatada" data-width="140"
+                            data-sortable="true" >Data Limite Emissão do RAC
+                            <em
+                                    class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="horasVendidas" data-sortable="true" data-width="123" >Horas
+                            Contratadas <em
+                                    class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="horasAlocadas" data-sortable="true" data-width="123">Horas Alocadas Auditores <em
+                                class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="horasDestCSA" data-sortable="true" data-width="123">Horas Previstas CSA <em
+                                class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="horasRevisao" data-sortable="true" data-width="123">Horas Destinadas a revisão <em
+                                class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="saldoLiquidoHoras" data-sortable="true" data-width="123">Saldo Líquido de Horas
+                            <em
+                                    class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="executado" data-sortable="true">% Executado <em
+                                class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="emRevisao" data-sortable="true">% Falta Revisar <em
+                                class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="revisado" data-sortable="true">% Revisado <em
+                                class="fas fa-sort"></em></th>
+                        <th data-field="stringColaboradores" data-filter-control="input" data-sortable="true" data-width="170"
+                            >Auditores <em class="fas fa-sort"></em></th>
+
+                        <th data-field="supervisores" data-filter-control="input" data-sortable="true" data-width="170"
+                            >Supervisores <em class="fas fa-sort"></em></th>
+
+                        <th data-field="gerentes" data-filter-control="input" data-sortable="true" data-width="170"
+                            >Gerentes <em class="fas fa-sort"></em></th>
+
+                        <th data-field="diretores" data-filter-control="input" data-sortable="true" data-width="170"
+                            >Diretores <em class="fas fa-sort"></em></th>
+                    </tr>
+                    </thead>
+                    <tbody id="corpoTabela">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/programacao/horizontal/eventos.js"></script>
+<script src="js/generic/get-filters.js"></script>
+<script src="js/generic/monta-tabela.js"></script>
+<script src="js/generic/send-post.js"></script>
+<script src="js/plugins/table2excel/jquery.table2excel.js"></script>
+<script src="js/utils/exportTableToExcel.js"></script>
+<script src="js/utils/funcoesUteis.js"></script>
+<script src="js/generic/load-modal.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+        loadList("programacao-horizontal/list");
+
+        $('#btnExport').on('click', function (e) {
+            e.preventDefault();
+            Export('dados', "programacoes");
+        });
+
+    });
+
+    $(function () {
+        $('#dados').bootstrapTable()
+    });
+</script>
+
+
+</html>

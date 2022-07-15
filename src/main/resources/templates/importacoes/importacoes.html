@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+
+<head>
+    <title>Cadastro de Atividades</title>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/atividade/cadastro-atividades.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container-atividade">
+    <div class="cadastro-atividade">
+        <div class="load load-atividade" style="display: none;">
+            <img src="img/utilitarios/Spinner-3.gif" style="width: 50px;" alt="carregando">
+        </div>
+        <h2 style="margin-top: 27px;">Importações</h2>
+        <form action="monitoramento/upload" enctype="multipart/form-data" for="selecao-arquivo"
+              id="myformArq" method="POST">
+            <div class="custom-file" style="width: 50%">
+                <input accept=".xlsx" class="custom-file-input" id="validatedCustomFile" multiple name="files" required
+                       type="file">
+
+                <label class="custom-file-label" for="validatedCustomFile" style="margin-top: auto;">Escolher
+                    arquivo...</label>
+            </div>
+            <input class="btn btn-secondary btn-importacoes" type="submit"/>
+            <div id="nome-arquivo" style="font-size: 15px;color:green;display: flex;">
+                <!-- Texto de Arquivo Selecionado --></div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+<script src="js/generic/nome-arquivo.js"></script>
+<script src="js/generic/send-entity.js"></script>
+<script src="js/generic/send-post.js"></Script>
+<script src="js/generic/get-filters.js"></Script>
+<script src="js/generic/send-delete.js"></Script>
+<script src="js/generic/monta-tabela.js"></script>
+

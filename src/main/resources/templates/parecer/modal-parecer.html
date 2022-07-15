@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<head>
+    <title>Parecer de Auditoria</title>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/parecer/parecer-de-auditoria.css" rel="stylesheet">
+</head>
+
+<body>
+<div aria-hidden="true" aria-labelledby="myExtraLargeModalLabel" class="modal fade bd-example-modal-xl" id="myModal"
+     role="dialog">
+    <div class="modal-dialog modal-xl" style="max-width: 1120px;">
+        <div class="modal-content">
+            <div class="modal-header" style="padding-bottom: 5px;">
+                <h1 class="titulo-parecer" th:inline="text">Parecer de Auditoria [[${p.cli.numCoop}]] -
+                    [[${p.cli.siglaCoop}]]</h1>
+                <button aria-label="Fechar" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding:12px;">
+                <div class="container-parecer-conteudo">
+                    <form action="/parecer/add" class="form-row" id="myform" method="post" th:object="${parecerDTO}">
+                        <div class="form-row align-items-center">
+                            <div class="form-group-parecer coluna-parecer-pequena" style="display: none">
+                                <label class="titulo-cadastro-parecer" for="id" style="margin-top: 10px;">ID
+                                    Parecer</label>
+                                <input class="form-control" id="id" name="id" th:inline="text" th:value=${p.parecer.id}
+                                       type="text">
+                            </div>
+                            <div class="form-group-parecer coluna-parecer-pequena" style="display: none">
+                                <label class="titulo-cadastro-parecer" for="idProgramacao" style="margin-top: 10px;">ID
+                                    Programacao</label>
+                                <input class="form-control" id="idProgramacao" name="idProgramacao" th:inline="text"
+                                       th:value=${p.id} type="text">
+                            </div>
+                            <div class="form-group-parecer coluna-parecer-pequena">
+                                <label class="titulo-cadastro-parecer" for="dtEnvio" style="margin-top: 10px;">Data
+                                    Acordada Para Envio do Parecer</label>
+                                <input class="form-control" id="dtEnvio" name="dtEnvio" th:inline="text"
+                                       th:value=${p.parecer.dtEnvio}
+                                       type="date">
+                            </div>
+                            <div class="form-group-parecer coluna-parecer-pequena">
+                                <label class="titulo-cadastro-parecer" for="dtParecer" style="margin-top: 10px;">Data do
+                                    Parecer</label>
+                                <input class="form-control" id="dtParecer" name="dtParecer" th:inline="text"
+                                       th:value=${p.parecer.dtParecer}
+                                       type="date">
+                            </div>
+                            <div class="form-group-parecer coluna-parecer-pequena">
+                                <label class="titulo-cadastro-parecer" for="dtPublicacao" style="margin-top: 10px;">Data
+                                    da Publicação</label>
+                                <input class="form-control" id="dtPublicacao" name="dtPublicacao" th:inline="text"
+                                       th:value=${p.parecer.dtPublicacao} type="date">
+                            </div>
+                            <div class="form-group-parecer coluna-parecer-pequena">
+                                <label class="titulo-cadastro-parecer" for="dtEmissao" style="margin-top: 10px;">Data de
+                                    emissão do RAE</label>
+                                <input class="form-control" id="dtEmissao" name="dtEmissao" th:inline="text"
+                                       th:value=${p.parecer.dtEmissao}
+                                       type="date">
+                            </div>
+                            <div class="form-group-parecer coluna-parecer-pequena" style="margin-right:0;">
+                                <label class="titulo-cadastro-parecer" for="opiniao">Opinião</label>
+                                <select class="form-control" id="opiniao" name="opiniao">
+                                    <option disabled selected>Selecione</option>
+                                    <option th:selected="${p.parecer.getStringOpiniao()} == 'RESSALVA'"
+                                            value="RESSALVA">Ressalva
+                                    </option>
+                                    <option th:selected="${p.parecer.getStringOpiniao()} == 'ABSTENCAO'"
+                                            value="ABSTENCAO">Abstenção
+                                    </option>
+                                    <option th:selected="${p.parecer.getStringOpiniao()} == 'ADVERSA'" value="ADVERSA">
+                                        Adversa
+                                    </option>
+                                    <option th:selected="${p.parecer.getStringOpiniao()} == 'SEM_MODIFICACAO'"
+                                            value="SEM_MODIFICACAO">Sem
+                                        Modificação
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group-parecer coluna-parecer" style="width: 1063px;">
+                                <label class="titulo-cadastro-parecer" for="paraModificacao" style="margin-top: 10px;">Parágrafos
+                                    de modificação</label>
+                                <textarea class="form-control text-area-parecer" id="paraModificacao"
+                                          name="paraModificacao" rows="3"
+                                          th:text=${p.parecer.paraModificacao}></textarea>
+                            </div>
+                            <div class="form-group-parecer coluna-parecer-pequena" style="margin-top: 10px;">
+                                <label class="titulo-cadastro-parecer" for="enfase"
+                                       style="margin-top: 10px;">Ênfase</label>
+                                <select class="form-control" id="enfase" name="enfase">
+                                    <option disabled selected>Selecione</option>
+                                    <option th:selected="${p.parecer.enfase} == true" value=true>Sim</option>
+                                    <option th:selected="${p.parecer.enfase} == false" value=false>Não</option>
+                                </select>
+                            </div>
+                            <div class="form-group-parecer coluna-parecer input-group-prepend"
+                                 style="width: 1063px;margin-top: -13px;">
+                                <label class="titulo-cadastro-parecer" for="paraEnfase">Parágrafos de Ênfase</label>
+                                <textarea class="form-control text-area-parecer enfase" id="paraEnfase"
+                                          name="paraEnfase" rows="3"
+                                          th:text=${p.parecer.paraEnfase}></textarea>
+                            </div>
+                            <div class="form-group-parecer coluna-parecer-pequena" style="margin-top: 10px;">
+                                <label class="titulo-cadastro-parecer" for="outrosAssuntos" style="margin-top: 10px;">Outros
+                                    Assuntos</label>
+                                <select class="form-control" id="outrosAssuntos" name="outrosAssuntos">
+                                    <option disabled selected>Selecione</option>
+                                    <option th:selected="${p.parecer.outrosAssuntos} == true" value="true">Sim</option>
+                                    <option th:selected="${p.parecer.outrosAssuntos} == false" value="false">Não
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group-parecer coluna-parecer" style="width: 1063px;margin-top: -13px;">
+                                <label class="titulo-cadastro-parecer" for="paraOutrosAssuntos">Parágrafo de outros
+                                    assuntos</label>
+                                <textarea class="form-control text-area-parecer" id="paraOutrosAssuntos"
+                                          name="paraOutrosAssuntos" rows="3"
+                                          th:text=${p.parecer.paraOutrosAssuntos}></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-dark" style="margin-left: 44%;margin-top: 1%;" type="submit">Salvar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/generic/send-entity.js"></script>
+</body>     

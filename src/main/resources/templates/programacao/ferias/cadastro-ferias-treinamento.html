@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Cadastro de Férias ou Treinamentos</title>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/atividade/cadastro-atividades.css" rel="stylesheet"/>
+    <link href="css/ferias/cadastro-ferias.css" rel="stylesheet"/>
+    <script src="js/plugins/bootstrap-table/bootstrap-table-filter-control.min.js"></script>
+    <link href="css/plugins/litepicker/litepicker.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container-ferias-treinamento">
+    <div class="cadastro-ferias-treinamento" style="margin-left: -92px;">
+        <h2>Cadastro de Férias ou Treinamentos</h2>
+        <div style="float: right;">
+            <p class="importacao-em-lote-titulo" style="margin-bottom: 0;">Importação em Lote</p>
+
+            <div class="input-group" style="width: 304px;float:right;margin-top: -20px">
+                <form class="div-importacao" action="programacao-lote/modelo-CSV" method="GET">
+                    <button class="btn-ferias" type="submit" style="display: flex">
+                        <em class="fas fa-download" style="margin-right: 5px;" type="submit"></em>
+                        <p type="submit" class="baixar-modelo">Baixar modelo</p>
+                    </button>
+                </form>
+
+                <div style="margin-right: 15px"></div>
+                <div class="div-importacao">
+                    <button class="btn-ferias" type="submit" style="display: flex"
+                        tabindex="0" onclick="loadModal('programacao-lote/modal', {message: 'Não foi possível carregar o modal.'});">
+                        <em class="fas fa-upload up-load"></em>
+                        <p class="baixar-modelo">Enviar arquivo</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <hr class="sidebar-divider my-0" style="margin-top: 7px;margin-left: 0;width: auto;">
+
+        <div class="container-input-ferias" id="containerInput" style="margin-top: 95px;margin-left: 23%;">
+            <div class="input input-feriados">
+                <div class="load">
+                    <em class="fas fa-sync fa-spin esconder-com-espaco" id="gifAtividade" style="font-size: 20px"></em>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row align-items-center" style="margin-top:135px">
+        <div class="form-group col-md-3" style="margin-top:-1px;margin-left: -92px;">
+            <label for="anoBase">Ano base Seleção
+            </label>
+            <select class="form-control form-control-ferias" id="anoBase" onchange="loadList('programacao-lote/list')"
+                    style="width: 100%;border-radius: 8px;font-size: 13px;color: rgb(110, 112, 126);padding: 1px;height: 25px;margin-left: 0;margin-top: 0;text-align-last: left;">
+                <option th:each="ano : ${anoBase}" th:selected="${ano} == ${#dates.year(#dates.createNow())}"
+                        th:utext="${ano}" th:value="${ano}">
+                </option>
+            </select>
+        </div>
+        <div class="indicador-ferias">
+            <button id="btnExport">Exportar Tabela em Excel</button>
+        </div>
+        <button id="btCadastro"
+                onclick="loadModal('programacao/index', {message: 'Não foi possível carregar o modal.'});">
+            Cadastrar Férias
+        </button>
+    </div>
+    <div style="margin-left:-93px;margin-bottom: 0; background:#033741;width: 116%;">
+        <div class="card-body" style="font-size: 12px;padding: 0;">
+            <div class="table-responsive">
+                <table aria-label="tabela-dados" class="table display tablesorter" data-toggle="table"
+                       data-toolbar="#toolbar"
+                       id="dados" style="color: white;">
+                    <thead style="background: #003641;">
+                    <tr>
+                        <th data-field="anoBase" data-sortable="true" data-width="90">Ano Base <em
+                                class="fas fa-sort"></em>
+                        </th>
+                        <th data-field="id" data-sortable="true" data-width="108">Programação Id <em
+                                class="fas fa-sort"></em>
+                        </th>
+                        <th data-field="tipoServico" data-sortable="true" data-width="100">Tipo Serviço <em
+                                class="fas fa-sort"></em></th>
+                        <th data-field="dtInicio" data-formatter="dataAtualFormatada" data-sortable="true"
+                            data-width="171">Data
+                            Início de
+                            Programação <em class="fas fa-sort"></em></th>
+                        <th data-field="dtFim" data-formatter="dataAtualFormatada" data-sortable="true"
+                            data-width="171">Data Final
+                            de
+                            Programação <em class="fas fa-sort"></em></th>
+                        <th data-field="stringColaboradores" data-sortable="true" data-width="400">Colaboradores <em
+                                class="fas fa-sort"></em></th>
+                        <th data-field="stringGestores" data-sortable="true" data-width="300">Gestores <em
+                                class="fas fa-sort"></em></th>
+                        <th class="lixo-ferias" data-events="operateEvents" data-field="operate"
+                            data-formatter="operateFormatter"
+                            data-width="95">Operações
+                        </th>
+                    </tr>
+                    <tbody id="corpoTabela">
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
+<script src="js/generic/nome-arquivo.js"></script>
+<script src="js/generic/send-entity.js"></script>
+<script src="js/generic/load-modal.js"></Script>
+<script src="js/generic/get-filters.js"></Script>
+<script src="js/generic/send-post.js"></Script>
+<script src="js/generic/send-delete.js"></Script>
+<script src="js/utils/funcoesUteis.js"></script>
+<script src="js/programacao/visualizacao/visualizacao-programacoes.js"></script>
+<script src="js/generic/monta-tabela.js"></script>
+<script src="js/programacao/ferias/funcoes.js"></script>
+<script src="js/programacao/cadastro/select-picker-preferencias.js"></script>
+<script src="js/plugins/table2excel/jquery.table2excel.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+<script src="js/utils/exportTableToExcel.js"></script>
+
+<script>
+    function carregarLote() {
+        $('#gifAtividade').removeClass('esconder-com-espaco');
+    }
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+        loadList("programacao-lote/list");
+
+        $('#btnExport').on('click', function (e) {
+            e.preventDefault();
+            Export('dados', 'ferias');
+        });
+
+
+    });
+</script>
+
+<script>
+
+    function operateFormatter(value, row, index) {
+        return [
+            '<a class="like" href="javascript:void(0)" title="Editar">',
+            '<i class="fas fa-pen"></i>',
+            '</a>  ',
+            '<a class="remove" href="javascript:void(0)" title="Excluir">',
+            '<i class="fa fa-trash"></i>',
+            '</a>'
+        ].join('')
+    }
+
+    window.operateEvents = {
+        'click .like': function (e, value, row, index) {
+
+            editaProgramacao(row.id, row.cli.cnpjCliente, row.anoBase);
+
+        },
+        'click .remove': function (e, value, row, index) {
+
+            deleteFerias(row.id)
+
+
+        }
+    }
+
+    $(function () {
+        $('#dados').bootstrapTable()
+    })
+
+    $(function () {
+        $("[data-toggle=popover]").popover({
+            html: true,
+            content: function () {
+                var content = $(this).attr("data-popover-content");
+                return $(content).children(".popover-body").html();
+            },
+            title: function () {
+                var title = $(this).attr("data-popover-content");
+                return $(title).children(".popover-heading").html();
+            }
+        });
+    });
+
+</script>
+
+
+
+

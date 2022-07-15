@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>CNAC - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/outro.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+<div id="wrapper">
+
+    <!-- Barra lateral -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Barra do lado - Marca -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../home/index.html">
+            <div class="sidebar-brand-icon">
+            </div>
+            <div class="sidebar-brand-text sidebar-title mx-3">WEB SERVICE CNAC</div>
+        </a>
+
+        <!-- Divisão -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Itens da barra do lado -->
+        <li class="nav-item active">
+            <a class="nav-link" href="../../home/index.html">
+                <em class="far fa-address-card"></em>
+                <span>Dashboard</span></a>
+        </li>
+
+        <!-- Cadastro -->
+        <li class="nav-item">
+            <a aria-controls="collapseTwo" aria-expanded="true" class="nav-link collapsed" data-target="#collapseOne"
+               data-toggle="collapse" href="#">
+                <em class="far fa-clipboard"></em>
+                <span>Cadastro</span>
+            </a>
+            <div aria-labelledby="headingOne" class="collapse" data-parent="#accordionSidebar" id="collapseOne">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="cadastro-escopo.html">Escopo</a>
+                    <a class="collapse-item" href="cadastro-atividade.html">Contrato</a>
+                    <a class="collapse-item" href="cadrastro-cooperativas.html">Cooperativas</a>
+                    <a class="collapse-item" href="cadastro-colaboradores.html">Colaboradores</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Cronograma -->
+        <li class="nav-item">
+            <a aria-controls="collapseTwo" aria-expanded="true" class="nav-link collapsed" data-target="#collapseTwo"
+               data-toggle="collapse" href="#">
+                <em class="far fa-calendar-alt"></em>
+                <span>Cronograma</span>
+            </a>
+            <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionSidebar" id="collapseTwo">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="dados-tabelados.html">Dados tabelados</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Obrigações Acessórias -->
+        <li class="nav-item">
+            <a aria-controls="collapseUtilities" aria-expanded="true" class="nav-link collapsed"
+               data-target="#collapseUtilities"
+               data-toggle="collapse" href="#">
+                <em class="fas fa-book"></em>
+                <span>Obrigações Acessórias</span>
+            </a>
+            <div aria-labelledby="headingUtilities" class="collapse" data-parent="#accordionSidebar"
+                 id="collapseUtilities">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="7110.html">7110</a>
+                    <a class="collapse-item" href="7120.html">7120</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divisão -->
+        <hr class="sidebar-divider">
+
+
+        <!-- Logo -->
+        <div class="sidebar-card d-none d-lg-flex">
+            <img alt="..." class="sidebar-card-illustration mb-2" src="img/cnac-horizontal-mono.png">
+        </div>
+
+    </ul>
+    <!-- Final da barra lateral -->
+
+    <!-- Conteúdo -->
+    <div class="d-flex flex-column" id="content-wrapper"></div>
+    <div class="dashboard-contenier" id="content">
+
+        <!-- Barra no topo -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
+                <em class="fa fa-bars"></em>
+            </button>
+
+            <!-- Topbar Pesquisa -->
+            <form
+                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input aria-describedby="basic-addon2" aria-label="Search"
+                           class="form-control bg-light border-0 small"
+                           placeholder="Procure por cliente, auditor..." type="text">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <em class="fas fa-search fa-sm"></em>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Navbar -->
+            <ul class="navbar-nav ml-auto">
+
+                <!-- Usuário-->
+                <li class="nav-item dropdown no-arrow">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                       data-toggle="dropdown"
+                       href="#" id="userDropdown" role="button">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Rafa</span>
+                        <img alt="perfil-sem-desenho"
+                             class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                    </a>
+                    <!-- Dropdown - Usuário -->
+                    <div aria-labelledby="userDropdown"
+                         class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+                        <a class="dropdown-item" href="#">
+                            <em class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></em>
+                            Perfil
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <em class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></em>
+                            Configurações
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" data-target="#logoutModal" data-toggle="modal" href="#">
+                            <em class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></em>
+                            Sair
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- Final da barra do topo -->
+
+        <!-- Começo do conteúdo da página -->
+        <div class="container-fluid">
+            <!-- Conteúdo -->
+            <div class="row">
+                <h1>7120</h1>
+            </div>
+            <div class="row">
+            </div>
+            <div class="row">
+            </div>
+            <div class="col-lg-6 mb-4">
+            </div>
+        </div>
+
+    </div>
+    <!-- final do conteúdo da página -->
+
+
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll das opções-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <em class="fas fa-angle-up"></em>
+    </a>
+
+    <!-- Logout de Usuário-->
+    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="logoutModal" role="dialog"
+         tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sair?</h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Aperte "Sair" para confirmar</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                    <a class="btn btn-primary" href="../../utils/login.html">Sair</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="sticky-footer bg-white"></footer>
+
+<!-- Final da parte de baixo -->
+</body>
+</html>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
+
+
+
+

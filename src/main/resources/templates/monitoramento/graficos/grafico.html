@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<link href="css/graficos/graficos.css" rel="stylesheet">
+
+<head>
+    <title>Gráficos</title>
+</head>
+<body>
+<div>
+    <div class="container-graficos">
+        <h2 class="titulo-graficos">Gráficos</h2>
+        <hr class="sidebar-divider" style="margin-bottom: 30px;margin-top: -7px;">
+        <div class="selecionar-filtros">
+
+            <div class="selecoes">
+                <form method="post">
+                    <label class="descritivo-filtro">Tipo de Gráfico</label>
+                    <select class="campos select-mult" data-actions-box="true" data-style="btn-primary" id="tipoGrafico"
+                            onchange="changeFunc();"
+                            title="Selecione">
+                        <option selected value="emissaoRAC">Status emissão de relatórios</option>
+                        <option value="execucao">% Executado por central</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="selecoes" style="z-index: 1;">
+                <form method="post">
+                    <label class="descritivo-filtro">Ano Base</label>
+                    <select class="select-mult campos" data-actions-box="true" data-style="btn-primary" id="anoBase"
+                            onChange="changeFunc()"
+                            title="Selecione">
+                        <option th:each="ano : ${anos}"
+                                th:selected="${ano} == ${#dates.year(#dates.createNow())}"
+                                th:utext="${ano}"
+                                th:value="${ano}"></option>
+                    </select>
+                </form>
+            </div>
+            <div class="selecoes">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Escritórios</label>
+                        <select class="select-mult campos" data-actions-box="true" data-style="btn-primary"
+                                data-width="213px" id="colaboradorEscritorio" multiple
+                                onChange="changeFunc()"
+                                title="Selecione">
+                            <option value="SP">São Paulo</option>
+                            <option value="BSB">Brasília</option>
+                            <option value="BH">Belo Horizonte</option>
+                            <option value="CSA">CSA</option>
+                            <option value="TI">TI</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div class="selecoes" style="z-index: 1;">
+                <form method="post">
+                    <label class="descritivo-filtro">Mês</label>
+                    <select class="select-mult campos" data-actions-box="true" data-style="btn-primary"
+                            data-width="150px"
+                            id="mes"
+                            multiple onChange="changeFunc()"
+                            title="Selecione">
+                        <option value="1">Janeiro</option>
+                        <option value="2">Fevereiro</option>
+                        <option value="3">Março</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Maio</option>
+                        <option value="6">Junho</option>
+                        <option value="7">Julho</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="selecoes">
+                <form method="post">
+                    <label class="descritivo-filtro">Todos os serviços</label>
+                    <select class="campos select-mult" data-actions-box="true" data-style="btn-primary" id="tipoServico"
+                            onchange="changeFunc();"
+                            multiple title="Selecione">
+                        <option selected>AC</option>
+                        <option selected>AE</option>
+                        <option selected>ES</option>
+                        <option selected>TI</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+            <div style="width: 1400px">
+                <canvas height="30" id="myChart" width="70"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/monitoramento/graficos.js"></script>
+<script src="js/generic/get-filters.js"></script>
+<script src="js/plugins/charjs/Utils.js"></script>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+
+        $('#btnExport').on('click', function (e) {
+            e.preventDefault();
+            Export('dados', 'monitoramento-atividade');
+        });
+
+        changeFunc();
+    });
+
+    $(function () {
+        $('#dados').bootstrapTable()
+    })
+</script>
+
+

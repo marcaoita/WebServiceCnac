@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+<link href="css/cadastro/cadastro-configuracoes.css" rel="stylesheet">
+    <title>Lista de Configurações</title>
+</head>
+
+<div class="container-configuracoes">
+    <h2>Cadastro de Parâmetro</h2>
+    <form id="myform" action=""  method="post" class="form-row">
+        <div id="errpesoCsa" class="form-group col-md-6">
+            <label for="pesoCsa">Peso Horas CSA
+        <span><em class="fas fa-info icone-configuracoes" data-toggle="tooltip" data-placement="top" title="CSA consome somente um percentual determinado das horas alocadas."></em></span></label>
+            <input type="text" class="form-control" id="pesoCsa" >
+        </div>
+        <div id="errhorasDesCsa" class="form-group col-md-6" style="margin-top: -1px;">
+            <label for="horasDesCsa" >Horas destinadas ao CSA
+            <span ><em class="fas fa-info icone-configuracoes" data-toggle="tooltip" data-placement="top" title="Percentual de referência sobre o total de horas para alocação de horas ao CSA, quando aplicável."></em></span></label>
+            <label style="margin-top: 1px;margin-left: 19px;"></label>
+            <input type="text" class="form-control" id="horasDesCsa" >
+        </div>
+        <div id="errhorasDesRev" class="form-group col-md-6" style="margin-top: 3px;">
+            <label for="horasDesRev" >Horas destinadas a Revisão
+            <span><em class="fas fa-info icone-configuracoes" data-toggle="tooltip" data-placement="top" title="Percentual de referência sobre o total de horas para revisão (horas residuais, visto que não há alocação de revisão na programação."></em></span></label>
+            <input type="text" class="form-control" id="horasDesRev" >
+        </div>
+        <div id="errhorasDesAud" class="form-group col-md-6" style="margin-top: 3px;">
+            <label for="horasDesAud" >Horas destinada a auditores
+            <span><em class="fas fa-info icone-configuracoes" data-toggle="tooltip" data-placement="top" title="Percentual de referência sobre o total de horas para execução de auditores."></em></span></label>
+            <input type="text" class="form-control" id="horasDesAud" >
+        </div>
+        <div id="errdiasRev" class="form-group col-md-6" style="margin-top: -8px;">
+            <label for="diasRev" >Dias de revisão
+            <span><em class="fas fa-info icone-configuracoes" data-toggle="tooltip" data-placement="top" title="Margem de dias para o cálculo da data final de auditoria para fins de 7110, representa o período de revisão após conclusão pelo auditor."></em></span></label>
+            <label style="margin-top: 1px;margin-left: 19px;"></label>
+            <input type="text" class="form-control" id="diasRev" >
+        </div>
+        <div id="errprazoRac" class="form-group col-md-6" style="margin-top: 4px;">
+            <label for="prazoRac" >Dias entrega RAC
+            <span><em class="fas fa-info icone-configuracoes" data-toggle="tooltip" data-placement="top" title="Período limite para emissão do relatório de auditoria cooperativa conforme regra do Bacen."></em></span></label>
+            <label style="margin-top: 1px;margin-left: 19px;"></label>
+            <input type="text" class="form-control" id="prazoRac" >
+        </div>
+        <div id="errvigencia" class="form-group col-md-6" style="margin-top: -5px;">
+            <label for="vigencia" >Data Corte
+            <span><em class="fas fa-info icone-configuracoes" data-toggle="tooltip" data-placement="top" title="Data na qual os parâmetros em questão entram em vigor."></em></span></label>
+            <input type="text" class="form-control" id="vigencia" >
+        </div>
+
+        <button type="submit" class="btn btn-dark" style="height: 38px;margin-top: 39px;margin-left: 489px;">Cadastrar</button>
+    </form>
+
+    <div id="tabela" style="margin-top: 60px;"></div>
+
+</div>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tabela").load('configuracao/list');
+    })
+</script>
+
+<script>
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

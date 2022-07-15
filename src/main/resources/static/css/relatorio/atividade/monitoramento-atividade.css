@@ -1,0 +1,99 @@
+#conteudo{
+    width: 1510px !important;
+}
+
+.calendar {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 14px;
+    align-items: center;
+    padding-left: -25px;
+}
+
+.head-monitoramento-atividade{
+    position: sticky;
+    top: 4px;
+    z-index: 2;
+    background-color: white;
+
+}
+
+.container-monitoramento-atividade{
+    padding-top: 25px;
+    margin-left: 195px;
+    width: 90%;
+}
+
+.titulo-monitoramento-atividade{
+    font-size: 30px;
+    position:sticky;
+    left: 195px;
+    color: #083642;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.calendar {
+    margin-left: -35px;
+    margin-bottom:96px !important;
+}
+
+.indicatore1 {
+    margin-left: 32px;
+    position:sticky;
+    left: 190px;
+}
+
+.indicatore2 {
+    margin-left: 32px;
+    position:sticky;
+    left: 430px;
+}
+
+.indicatore3 {
+    margin-left: 32px;
+    position:sticky;
+    left: 660px;
+}
+
+.indicatore4 {
+    margin-left: 32px;
+    position:sticky;
+    left: 830px;
+}
+
+.indicatore5 {
+    margin-left: 32px;
+    position:sticky;
+    left: 1000px;
+}
+
+.indicatore6 {
+    left: 1000px;
+    margin-left: 32px;
+    position: sticky;
+}
+
+.tBodyCsP{
+    background: white;
+    color: black;
+}
+
+.centro{
+    text-align-last: center;
+}
+
+#dados tbody{
+    background:white;
+    color:black;
+}
+
+.celulaEmEdicao input[type=text]{
+    width:100%;
+    border:none;
+    background-color:rgb(255, 255, 255);
+}
+
+.celulaEmEdicao {
+    padding: 0;
+}

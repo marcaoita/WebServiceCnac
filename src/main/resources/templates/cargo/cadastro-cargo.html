@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<!--suppress ALL -->
+
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<head>
+    <title>Cadastro de Cargos</title>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/cargo/cadastro-cargo.css" rel="stylesheet">
+    <link href="css/atividade/cadastro-atividades.css" rel="stylesheet"/>
+    <link href="css/ferias/cadastro-ferias.css" rel="stylesheet"/>
+    <script src="js/plugins/bootstrap-table/bootstrap-table-filter-control.min.js"></script>
+</head>
+<body>
+<div class="container-cargo">
+    <div class="dashboard-container">
+        <h2>Cadastro de Cargos
+            <div class="load load-cargo">
+                <img src="img/utilitarios/Spinner-3.gif" style="width: 50px;" alt="carregando">
+            </div>
+        </h2>
+        <form action="/cargo/add" class="form-group" id="myform" method="post" th:object="${cargo}" url="cargo/list">
+            <div class="dashboard-container" id="errCargoDesc">
+                <label for="cargoDesc">Cargo</label>
+                <input class="form-control" id="cargoDesc" th:field="*{cargoDesc}">
+            </div>
+            <div class="dashboard-container" id="errArea">
+                <label for="area">Área</label>
+                <input class="form-control" id="area" th:field="*{area}">
+            </div>
+            <button class="btn btn-dark" style="margin-top: 10px;margin-right: 8px;" type="submit">Salvar</button>
+        </form>
+    </div>
+    <div id="tabela-cargo">
+        <div class="titulo" style="margin-bottom: -10px;">
+            <h2>Cargos
+                <button id="btnExport" style="width: 177px;float: right;">Exportar Tabela em Excel</button>
+            </h2>
+        </div>
+        <table aria-label="tabela-cargos" class="table table-hover table-sm display tabela-minha tablesorter" data-toggle="table"
+               data-toolbar="#toolbar" id="dados" style="width: 100%;">
+            <thead>
+            <tr>
+                <th data-field="cargoDesc" data-sortable="true" scope="col">Cargo <em class="fas fa-sort"></em></th>
+                <th data-field="area" data-sortable="true" scope="col">Área <em class="fas fa-sort"></em></th>
+                <th class="lixo-ferias" data-events="operateEvents" data-field="operate" data-formatter="operateFormatter"
+                    data-width="95">Operações
+                </th>
+            </tr>
+            </thead>
+            <tbody id="corpoTabela">
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+
+<script src="js/cargo/funcoes.js"></script>
+<script src="js/generic/send-entity.js"></script>
+<script src="js/generic/send-post.js"></Script>
+<script src="js/generic/get-filters.js"></Script>
+<script src="js/generic/send-delete.js"></Script>
+<script src="js/generic/monta-tabela.js"></script>
+<script src="js/plugins/table2excel/jquery.table2excel.js"></script>
+<script src="js/utils/exportTableToExcel.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+        loadList("cargo/list");
+
+        $('#btnExport').on('click', function (e) {
+            e.preventDefault();
+            Export('dados', 'cargos');
+        });
+
+    });
+</script>
+
+<script>
+
+    function operateFormatter(value, row, index) {
+        return [
+            '<a class="like" href="javascript:void(0)" title="Editar">',
+            '<i class="fas fa-pen"></i>',
+            '</a>  ',
+            '<a class="remove" href="javascript:void(0)" title="Excluir">',
+            '<i class="fa fa-trash"></i>',
+            '</a>'
+        ].join('')
+    }
+
+    window.operateEvents = {
+        'click .like': function (e, value, row, index) {
+            setValues(row)
+        },
+        'click .remove': function (e, value, row, index) {
+            deleteCargo(row.area)
+        }
+    }
+
+    $(function () {
+        $('#dados').bootstrapTable()
+    })
+
+</script>

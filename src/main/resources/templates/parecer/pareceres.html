@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+
+<head>
+    <title>Pareceres</title>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/atividade/cadastro-atividades.css" rel="stylesheet"/>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/parecer/parecer-de-auditoria.css" rel="stylesheet">
+    <link href="css/plugins/litepicker/litepicker.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container-parecer">
+    <div class="cadastro-parecer">
+        <h2 style="margin-bottom: 4px;">Auditoria Externa</h2>
+        <div class="load" style="margin-bottom: -24px;">
+            <img src="img/utilitarios/Spinner-3.gif" style="width: 50px; margin-left: 32%; margin-top:-4%;" alt="carregando">
+        </div>
+        <hr class="sidebar-divider" style="margin: 0;margin-bottom: 30px;">
+
+        <div class="form-row align-items-center">
+        <div style="width: fit-content;">
+            <label class="descritivo-filtro">Ano Base</label>
+            <select class="form-control form-control-ferias select-mult" id="anoBase" onchange="loadList('parecer/list')" data-style="btn-primary" data-width="150"
+            style="border-radius: 15px">
+                <option th:each="ano : ${anoBase}" th:selected="${ano} == ${#dates.year(#dates.createNow())}"
+                        th:utext="${ano}" th:value="${ano}">
+                </option>
+            </select>
+        </div>
+        <div>
+            <button id="btnExport" style="margin-top: 6;margin-left: 20px;">Exportar Tabela em Excel</button>
+        </div>
+        </div>
+
+        <div class="contaier-parecer-card">
+        <div class="card-body" style="font-size: 12px;padding: 0;">
+            <div class="table-responsive ">
+                <table aria-label="tabela-dados" class="table display tablesorter" data-toggle="table" data-toolbar="#toolbar"
+                       id="dados" style="color: white;">
+                    <thead style="background: #003641;">
+                    <tr>
+                        <th data-field="id" data-sortable="true" data-width="80" class="centro">ID Parecer
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="programacao.cli.numCoop" data-sortable="true" data-width="80" class="centro">Número Coop
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="programacao.cli.siglaCoop" data-sortable="true" data-width="100">Sigla Cliente
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="programacao.dtInicio" data-formatter="dataAtualFormatada" class="centro" data-sortable="true"
+                            data-width="100">Data início Programação
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="programacao.dtFinalAuditoria" data-formatter="dataAtualFormatada" class="centro" data-sortable="true"
+                            data-width="100">Data Final de auditoria
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="dtEnvio" data-formatter="dataAtualFormatada" data-sortable="true" class="centro"
+                            data-width="100">Data Acordada Para Envio do Parecer
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="dtPublicacao" data-formatter="dataAtualFormatada" data-sortable="true" class="centro"
+                            data-width="100">Data da Publicação
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="dtEmissao" data-formatter="dataAtualFormatada" data-sortable="true" class="centro"
+                            data-width="100">Data de emissão do RAE
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="opiniao" data-sortable="true" data-width="90">Opinião
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="paraModificacao" data-sortable="true" data-width="275">Parágrafos de modificação
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="enfase" data-sortable="true" data-width="90" class="centro">Ênfase
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="paraEnfase" data-sortable="true" data-width="275">Parágrafos de Ênfase
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="outrosAssuntos" data-sortable="true" data-width="90" class="centro">Outros Assuntos
+                            <em class="fas fa-sort"></em></th>
+                        <th data-field="paraOutrosAssuntos" data-sortable="true" data-width="275">Parágrafo de outros assuntos
+                            <em class="fas fa-sort"></em></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
+
+<script src="js/generic/monta-tabela.js"></script>
+<script src="js/generic/load-modal.js"></Script>
+<script src="js/generic/send-post.js"></script>
+<script src="js/generic/get-filters.js"></script>
+<script src="js/parecer/eventos.js"></script>
+<script src="js/plugins/table2excel/jquery.table2excel.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+<script src="js/utils/exportTableToExcel.js"></script>
+<script src="js/utils/funcoesUteis.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+        loadList("parecer/list");
+
+        $('#btnExport').on('click', function (e) {
+            e.preventDefault();
+            Export('dados', 'pareceres');
+        });
+    });
+</script>
+
+
+

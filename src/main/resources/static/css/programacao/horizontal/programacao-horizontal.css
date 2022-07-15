@@ -1,0 +1,170 @@
+
+.container-dados-tabelados {
+    padding-top: 85px;
+    margin-left: 210px;
+
+}
+
+.head-dados-tabelados {
+    position: sticky;
+    width: 101%;
+    top: 30px;
+    z-index: 2;
+    background-color: white;
+    padding-top: 15px;
+    margin-left: -17px;
+}
+
+
+.titulo-dados-tabelados {
+    font-size: 30px;
+    position: sticky;
+    left: 195px;
+    color: #083642;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.calendar {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 22px;
+    align-items: center;
+    padding-left: -25px;
+    height: 43px;
+}
+
+/*noinspection ALL*/
+.cabecalho-tabela {
+    width: 2580px;
+    margin-left: -13px !important;
+    margin-bottom: 0;
+    position: sticky;
+    background: #033741;
+    left: auto !important;
+    top: 150px;
+    z-index: 1;
+}
+
+.linhas-dados-tabelados {
+    background-color: white;
+}
+
+.linhas-dados-tabelados:hover {
+    transition: 0.5s;
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+
+
+.indicador1 {
+    margin-left: 32px;
+
+    left: 194px;
+}
+
+.indicador2 {
+    margin-left: 25px;
+
+    left: 432px;
+}
+
+.indicador3 {
+    margin-left: 25px;
+
+    left: 610px;
+}
+
+.indicador4 {
+    margin-left: 25px;
+
+    left: 790px;
+}
+
+.indicador5 {
+    margin-left: 25px;
+
+    left: 965px;
+}
+
+.indicador6 {
+    margin-left: 25px;
+
+    left: 1205px;
+}
+
+.indicador7 {
+    margin-left: 25px;
+    left: 1386px;
+}
+
+.indicador8 {
+    margin-left: 25px;
+}
+
+
+.table display table-bordered table-hover {
+    margin-top: -81px;
+}
+
+#dados tbody {
+    background: white;
+    color: black;
+}
+
+#dados td {
+    cursor: pointer;
+}
+
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+.sticky + .content {
+    padding-top: 102px;
+}
+
+.form-control-dados-tabelados {
+    width: 100%;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #6e707e;
+    padding: 1px;
+    height: 25px;
+}
+
+.form-control-dados-tabelados:focus {
+    background-color: #fff;
+    border-color: #39827d;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(78 115 223 / 25%);
+}
+
+#toolbar {
+    margin: 0;
+}
+
+.btn-chamativo{
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-chamativo:hover{
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+
+.fixed-table-body{
+    background-color: white;
+    margin-top: -16px;
+}
+
+.fixed-table-toolbar{
+    background-color: white;
+}

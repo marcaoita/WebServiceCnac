@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<link href="css/utils/estilo-geral.css" rel="stylesheet">
+<link href="css/programacao/horizontal/programacao-horizontal.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/x-editable@1.5.1/dist/bootstrap3-editable/css/bootstrap-editable.css"
+      rel="stylesheet">
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
+      rel="stylesheet"/>
+<head>
+    <title>CNAC - Dados Tabelados</title>
+</head>
+
+<div class="container-dados-tabelados" style="width: fit-content;">
+    <div class="head-dados-tabelados" style="margin-top:-78px;">
+        <div class="month-indicator" style="margin-left: -2px;margin-bottom: 4px;">
+            <time class="titulo-dados-tabelados" datetime="2020-02"> Controle de geração de amostras</time>
+            <div class="load" style="margin-bottom: -24px;">
+                <img src="img/utilitarios/Spinner-3.gif" style="width: 50px; margin-left: 22%;margin-top: -69px;"
+                     alt="carregando">
+            </div>
+        </div>
+        <hr class="sidebar-divider my-0" style="margin-top: 7px;margin-left: 0;width: 3290px;">
+        <div class="calendar" style="margin-left: -35px;">
+            <div class="indicador1">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Programação por Escritório</label>
+                        <select class="select-mult" data-actions-box="true" data-style="btn-primary"
+                                data-width="213px" id="colaboradorEscritorio" multiple
+                                onChange="loadList('controle-geracao-amostra/list')"
+                                title="Selecione">
+                            <option value="SP">São Paulo</option>
+                            <option value="BSB">Brasília</option>
+                            <option value="BH">Belo Horizonte</option>
+                            <option value="CSA">CSA</option>
+                            <option value="TI">TI</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <div class="indicador2" style="z-index: 1;">
+                <form method="post">
+                    <label class="descritivo-filtro">Tipo de Serviço</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary" data-width="150px"
+                            id="tipoServico" multiple onChange="loadList('controle-geracao-amostra/list')"
+                            title="Selecione">
+                        <option selected>AC</option>
+                        <option selected>AE</option>
+                        <option selected>ES</option>
+                        <option>TI</option>
+                        <option>TREINAMENTO (TR)</option>
+                        <option value="FERIAS">FÉRIAS (FR)</option>
+                        <option value="LICENCA">LICENÇAS (LI)</option>
+                        <option value="COMPENSACAO">COMPENSAÇÃO (CP)</option>
+                    </select>
+                </form>
+            </div>
+
+
+            <div class="indicador3" style="z-index: 1;">
+                <form method="post">
+                    <label class="descritivo-filtro">Ano Base</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary" data-width="150px"
+                            id="anoBase" onChange="loadList('controle-geracao-amostra/list')"
+                            title="Selecione">
+                        <option th:each="ano : ${anoBase}" th:selected="${ano} == ${#dates.year(#dates.createNow())}"
+                                th:utext="${ano}" th:value="${ano}"></option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="indicador4" style="z-index: 1;">
+                <form method="post">
+                    <label class="descritivo-filtro">Mês</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary" data-width="150px"
+                            id="mes"
+                            multiple onChange="loadList('controle-geracao-amostra/list')"
+                            title="Selecione">
+                        <option value="1">Janeiro</option>
+                        <option value="2">Fevereiro</option>
+                        <option value="3">Março</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Maio</option>
+                        <option value="6">Junho</option>
+                        <option value="7">Julho</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="indicador5">
+                <form method="post">
+                    <label class="descritivo-filtro">Gestores</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary"
+                            data-width="150px"
+                            id="gestoresFilter" multiple name="test"
+                            onChange="loadList('controle-geracao-amostra/list')"
+                            title="Selecione">
+                        <option disabled>Diretores</option>
+                        <option th:each="d : ${diretores}" th:utext="${d.getNome()}" th:value="${d.getCpfCnpj()}">
+                        </option>
+                        <option data-divider="true"></option>
+                        <option disabled>Gerentes</option>
+                        <option th:each="g : ${gerentes}" th:utext="${g.getNome()}" th:value="${g.getCpfCnpj()}">
+                        </option>
+                        <option data-divider="true"></option>
+                        <option disabled>Supervisores</option>
+                        <option th:each="s : ${supervisores}" th:utext="${s.getNome()}" th:value="${s.getCpfCnpj()}">
+                        </option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="indicador6" style="z-index: 1;">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Programações por Escritório</label>
+                        <select class="select-mult" data-actions-box="true" data-style="btn-primary" data-width="213px"
+                                id="escritorios" multiple
+                                onChange="loadList('controle-geracao-amostra/list')"
+                                title="Selecione">
+                            <option value="SP">São Paulo</option>
+                            <option value="BSB">Brasília</option>
+                            <option value="BH">Belo Horizonte</option>
+                            <option value="TI">TI</option>
+                            <option value="CSA">CSA</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <div class="indicador7" style="z-index: 1;">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Amostra Gerada?</label>
+                        <select class="select-mult" data-actions-box="true" data-style="btn-primary"
+                                data-width="213px" id="amostra"
+                                onChange="loadList('controle-geracao-amostra/list')" title="Selecione">
+                            <option></option>
+                            <option title="Amostra gerada? == SIM" value="true">SIM</option>
+                            <option title="Amostra gerada? == NÃO" value="false">NÃO</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <div class="indicador7">
+                <button id="btnExport">Exportar Tabela em Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-left:-17px;margin-bottom: 0; background:white;margin-top: -80px;width: 2600px; margin-right: 1%;">
+        <div class="card-body" style="font-size: 12px;padding: 0;margin-top: 72px;">
+            <div class="table-responsive fixTableHead">
+                <table aria-label="tabela-dados" class="table display tablesorter tabela-plugin" data-toggle="table"
+                       data-checkbox-header="false" data-click-to-select="true" id="dados"
+                       style="color: white;width: 63%;">
+                    <thead>
+                    <tr>
+                        <th data-checkbox="true" data-field="state"></th>
+                        <th class="centro" data-field="cli.codCentral" data-filter-control="input" data-sortable="true"
+                            data-width="73">Código da Central <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="cli.segmentacao" data-filter-control="select"
+                            data-sortable="true" data-width="73">Segmentação <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="cli.numCoop" data-filter-control="input" data-sortable="true"
+                            data-width="73">Número Cooperativa <em class="fas fa-sort"></em></th>
+                        <th data-field="cli.siglaCoop" data-filter-control="input" data-sortable="true"
+                            data-width="143">
+                            Cooperativa <em class="fas fa-sort"></em></th>
+                        <th data-editable="true" data-field="dtBase" data-filter-control="input" data-pk="1"
+                            data-sortable="true" data-type="text" data-url="/post" data-width="82">Data
+                            Base da Amostra <em class="fas fa-sort"></em></th>
+                        <th data-field="amostraGerada" data-filter-control="input" data-formatter="convertBoolean"
+                            data-sortable="true" data-width="70">
+                            Amostra gerada? <em class="fas fa-sort"></em></th>
+                        <th data-field="dtPrevAmostra" data-filter-control="input" data-formatter="dataAtualFormatada"
+                            data-sortable="true" data-width="92">Data Prevista Geração Amostra <em
+                                class="fas fa-sort"></em></th>
+                        <th data-field="dtInicio" data-filter-control="select" data-formatter="dataAtualFormatada"
+                            data-sortable="true" data-width="90">Data Início de Programação <em
+                                class="fas fa-sort"></em></th>
+                        <th data-field="stringEscopos" data-filter-control="input" data-sortable="true" data-width="194">
+                            Escopos <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="cli.estado" data-filter-control="select" data-sortable="true"
+                            data-width="60">Estado <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="tipoServico" data-filter-control="select" data-sortable="true"
+                            data-width="70">Tipo Serviço <em class="fas fa-sort"></em></th>
+                        <th data-field="dtFim" data-filter-control="select" data-formatter="dataAtualFormatada"
+                            data-sortable="true" data-width="90">Data Final de Programação <em
+                                class="fas fa-sort"></em></th>
+                        <th data-field="stringColaboradores" data-filter-control="input" data-sortable="true"
+                        >Auditores <em class="fas fa-sort"></em></th>
+                        <th data-field="supervisores" data-filter-control="input" data-sortable="true"
+                        >Supervisores <em class="fas fa-sort"></em></th>
+                        <th data-field="gerentes" data-filter-control="input" data-sortable="true"
+                        >Gerentes <em class="fas fa-sort"></em></th>
+                        <th data-field="diretores" data-filter-control="input" data-sortable="true"
+                        >Diretores <em class="fas fa-sort"></em></th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="corpoTabela">
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/amostra/eventos.js"></script>
+<script src="js/amostra/send.js"></script>
+<script src="js/generic/load-modal.js"></Script>
+<script src="js/generic/send-entity.js"></script>
+<script src="js/generic/send-post.js"></script>
+<script src="js/generic/get-filters.js"></script>
+<script src="js/generic/monta-tabela.js"></script>
+<script src="js/plugins/table2excel/jquery.table2excel.js"></script>
+<script src="js/utils/exportTableToExcel.js"></script>
+<script src="js/utils/funcoesUteis.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+
+        setMesAtual();
+        loadList('/controle-geracao-amostra/list');
+
+        $('#btnExport').on('click', function (e) {
+            e.preventDefault();
+            Export('dados', 'programacoes');
+        });
+
+
+    });
+
+    $(function () {
+        $('#dados').bootstrapTable()
+       // $.fn.editable.defaults.mode = 'inline';
+    })
+</script>
+
+
+</html>

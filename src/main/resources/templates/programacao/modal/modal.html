@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<link href="css/programacao/vertical/tela-programacao.css" rel="stylesheet">
+<link href="css/programacao/horizontal/programacao-horizontal.css" rel="stylesheet">
+<link href="css/utils/estilo-geral.css" rel="stylesheet">
+
+<head>
+    <title>Programação</title>
+</head>
+
+<div aria-hidden="true" aria-labelledby="myExtraLargeModalLabel" class="modal fade bd-example-modal-xl" id="myModal"
+     role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" style="width: 1630px;">
+            <div class="modal-header" style="padding-bottom: 5px;margin-bottom: 14px;">
+                <h1 style="color: #083642;margin-bottom:0;font-size: 35px;">Programação</h1>
+
+                <div class="form-row align-items-center mostrar">
+                    <div>
+                        <select class="select-mult" data-actions-box="true" data-style="select-mostrar"
+                                data-width="208px" id="visibilidade" onChange="onChangeVisibilidade()"
+                                title="Motrar">
+                            <option title="Mostrar == todos" value="todos">Todos</option>
+                            <option selected title="Mostrar == selecionado" value="selecionado">Selecionado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row align-items-center tipo-servico">
+                    <div style="margin-top:18px;">
+                        <select class="select-mult sem-background" data-actions-box="true" title="Tipo de Serviço"
+                                data-style="select-tipo-servico" data-width="208px" id="tipoServicoModal"
+                                onChange="onChangTipoFilter()">
+                            <option value="todos">Todos</option>
+                            <option>AC</option>
+                            <option>AE</option>
+                            <option>ES</option>
+                                <option>TI</option>
+                                <option>CSA</option>
+                                <option>TREINAMENTO</option>
+                                <option value="FERIAS">FÉRIAS</option>
+                                <option value="LICENCA">LICENÇAS</option>
+                                <option value="COMPENSACAO">COMPENSAÇÃO</option>
+                                <option>ACOMPANHAMENTO</option>
+                                <option>RESERVA</option>
+                            </select>
+                    </div>
+                </div>
+
+                    <div class="form-row align-items-center ano-base">
+                    <div class="form-group col-md-3" style="margin-top:30px;">
+                        <select class="form-control anoBaseVisualizacaoProgramacao" id="anoBaseVisualizacao"
+                                th:onchange="onChangeAnoBase([[${tipo}]])"
+                                th:field="*{anoBase}">
+                            <option th:each="ano : ${anoBase}"
+                                    th:selected="${ano} == ${#dates.year(#dates.createNow())}"
+                                    th:utext="${ano}"
+                                    th:value="${ano}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <button aria-label="Fechar" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-programacao-conteudo">
+
+                    <div style="display: none">
+                        <div class="data-base-titulo" id="cliente" th:attr="cnpj=${cnpj}"></div>
+                        <div class="data-base-titulo" id="colaborador" th:attr="cpf=${cpf}"></div>
+                        <div class="data-base-titulo" id="idProgramacao" th:attr="idProgramacao=${idProgramacao}"></div>
+                    </div>
+                    <div id="programacoes"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/programacao/visualizacao/visualizacao-programacoes.js"></script>
+
+
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $('.select-mult1').selectpicker();
+
+        let tipo = /*[[${tipo}]]*/;
+        loadProgramacoes(tipo)
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('.select-mult').selectpicker();
+    });
+</script>
+
+
+</html>

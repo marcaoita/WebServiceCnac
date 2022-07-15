@@ -1,0 +1,39 @@
+.container-graficos{
+margin-left: 14%;
+margin-top: 3%;
+width: fit-content;
+}
+
+.titulo-graficos{
+    color: #083642;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.selecionar-filtros{
+    display: flex;
+    margin-bottom: 22px;
+}
+
+.selecoes{
+    margin-right: 10px;
+}
+
+.campos{
+    background: white;
+    border-color: #a9a7a7;
+    color: #202131;
+    width: 250px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.container-avaliacao-critica{
+    margin-left: 200px;
+    margin-top: 31px;
+    width: fit-content;
+}
+
+.fixed-table-loading{
+    margin-bottom: 0;
+}

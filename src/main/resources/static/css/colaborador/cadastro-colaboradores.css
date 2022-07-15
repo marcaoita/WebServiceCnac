@@ -1,0 +1,34 @@
+#tabela-colaborador {
+    margin-bottom: 10%;
+    margin-top: 3%;
+    font-size: 14px;
+    padding-left: 0;
+    padding-right: 0;
+    width: 61%;
+    margin-left: 19%;
+}
+
+.container-colaboradores {
+    padding-top: 25px;
+    margin-left: 19%;
+    margin-right: 10%;
+}
+
+
+.lixo-colaboradores {
+    text-align-last: center;
+}
+
+.like {
+    font-size: 15px;
+}
+
+.remove {
+    margin-left: 15px;
+    font-size: 15px;
+}
+
+.load-colaborador {
+    text-align: center;
+    margin-top: -50px;
+}

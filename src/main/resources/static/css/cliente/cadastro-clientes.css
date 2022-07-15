@@ -1,0 +1,55 @@
+#tabela-cliente{
+margin-bottom: 10%;
+margin-top: 3%;
+font-size: small;
+width: 72%;
+margin-left: 19%;
+}
+
+.container-cliente{
+padding-top: 45px;
+margin-left: 19%;
+margin-right: 10%;
+}
+
+.form-cadastro-clientes{
+margin-top: 40px;
+}
+
+.lixo-clientes{
+text-align-last: center;
+}
+
+.like{
+    font-size: 15px;
+}
+
+.remove{
+    margin-left: 15px;
+    font-size: 15px;
+}
+
+.input-clientes{
+    margin-left: 67%;
+    margin-bottom: -6%;
+    margin-top: -3%;
+}
+
+.load-clientes{
+    text-align: center;
+    margin-top: -50px;
+}
+
+.btn-importacoes{
+    height: 35px;
+    font-size: 14px;
+    background: gray;
+    color: white;
+    margin-top: 3px;
+
+}
+.btn-importacoes:hover{
+    background-color: #048930;
+    color: white;
+    transition: 0.3s;
+}

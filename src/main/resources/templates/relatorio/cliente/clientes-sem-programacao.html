@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<link href="css/utils/estilo-geral.css" rel="stylesheet">
+<link href="css/relatorio/clientes/cliente-sem-programacao.css" rel="stylesheet">
+<link href="css/programacao/vertical/programacao-vertical.css" rel="stylesheet">
+<link href="css/programacao/vertical/tela-programacao.css" rel="stylesheet">
+<script src="js/plugins/bootstrap-table/bootstrap-table-filter-control.min.js"></script>
+<head>
+    <title>Clientes sem programação</title>
+</head>
+
+<div class="container-cliente-sem-programacao">
+    <div class="head-cliente-sem-programacao">
+        <div class="month-indicator" style="margin-left: -2px;width: max-content;">
+            <time class="titulo-cliente-sem-programacao" datetime="2020-02"> Clientes sem Programação</time>
+        </div>
+        <hr class="sidebar-divider my-0" style="margin-top: 7px;margin-left: 0;width: 1335px;">
+        <div class="calendar">
+            <div class="indicator1" style="z-index: 1;">
+                <form method="post">
+                    <label class="descritivo-filtro">Ano Base</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary" id="anoBase"
+                            onChange=""
+                            title="Ano Base">
+                        <option th:each="ano : ${anos}"
+                                th:selected="${ano} == ${#dates.year(#dates.createNow())}"
+                                th:utext="${ano}"
+                                th:value="${ano}"></option>
+                    </select>
+                </form>
+            </div>
+            <div class="indicator2">
+                <button id="btnExport">Exportar Tabela em Excel</button>
+            </div>
+        </div>
+
+        <div class="card"
+             style="width: 1336px; margin-left:3%;margin-bottom: 0; background:white;margin-top: -79px;">
+            <div class="card-body" style="font-size: 12px;padding: 0;">
+                <div class="table-responsive fixTableHead">
+                    <table aria-label="tabela-dados" class="table display tablesorter tabela-plugin" data-toggle="table" data-toolbar="#toolbar"
+                           id="dados"
+                           style="color: white;">
+                        <thead>
+                        <tr>
+                            <th data-filter-control="input" data-sortable="true" data-width="102">CNPJ Cliente <em
+                                    class="fas fa-sort"></em></th>
+                            <th data-filter-control="input" data-sortable="true" data-width="122">Código da Central <em
+                                    class="fas fa-sort"></em></th>
+                            <th data-filter-control="input" data-sortable="true" data-width="155">Número da Cooperativa
+                                <em class="fas fa-sort"></em></th>
+                            <th data-filter-control="input" data-sortable="true" data-width="188">Sigla Cooperativa <em
+                                    class="fas fa-sort"></em></th>
+                            <th data-filter-control="select" data-sortable="true" data-width="90">Ano Base <em
+                                    class="fas fa-sort"></em></th>
+                            <th data-filter-control="input" data-sortable="true" data-width="120">Horas Vendidas <em
+                                    class="fas fa-sort"></em></th>
+                            <th data-filter-control="select" data-sortable="true" data-width="126">Tipo Serviço <em
+                                    class="fas fa-sort"></em></th>
+                            <th data-filter-control="select" data-sortable="true" data-width="122">Número Escopo <em
+                                    class="fas fa-sort"></em></th>
+                            <th data-filter-control="input" data-sortable="true" data-width="310">Descrição Escopo <em
+                                    class="fas fa-sort"></em></th>
+                        </tr>
+                        </thead>
+                        <tbody class="tBodyCsP" id="tBody">
+                        <tr class="selecao-arquivo" th:each="r : ${relatorio}">
+                            <td th:inline="text">[[${r.getCnpjCliente()}]]</td>
+                            <td class="centro" th:inline="text">[[${r.getCodCentral()}]]</td>
+                            <td class="centro" th:inline="text">[[${r.getNumCoop()}]]</td>
+                            <td th:inline="text">[[${r.getSiglaCoop()}]]</td>
+                            <td class="centro" th:inline="text">[[${r.getAnoBase()}]]</td>
+                            <td class="centro" th:inline="text">[[${r.getHorasVendidas()}]]</td>
+                            <td class="centro" th:inline="text">[[${r.getTipoServico()}]]</td>
+                            <td class="centro" th:inline="text">[[${r.getNumEscopo()}]]</td>
+                            <td th:inline="text">[[${r.getTipoEscopo()}]]</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
+
+<script src="js/plugins/table2excel/jquery.table2excel.js"></script>
+<script src="js/utils/exportTableToExcel.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+
+        $('#btnExport').on('click', function (e) {
+            e.preventDefault();
+            Export('dados', 'clientes-sem-programacao');
+        });
+    });
+
+    $(function () {
+        $('#dados').bootstrapTable()
+    })
+
+</script>

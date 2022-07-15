@@ -1,0 +1,102 @@
+.container-inicio {
+    margin-top: -15px;
+    margin-left: 194px;
+    margin-bottom: 50px;
+    transition: 0.5s;
+    width: 85%;
+}
+
+.titulo-card-inicio {
+    font-size: 21px;
+}
+
+.row1 {
+    margin-left: 10px;
+}
+
+.card-inicio {
+    position: relative;
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+    width: 320px !important;
+}
+
+.jumbotron-inicio {
+    margin-left: 136px;
+    background-image: linear-gradient(to bottom right, #252424, #003641) !important;
+}
+
+.titulo-inicio {
+    font-family: az_ea_font, "Segoe UI", az_font, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.card-body {
+    padding: 0 !important;
+    padding-left: 16px !important;
+}
+
+.card-body-inicio {
+    height: 60px !important;
+    margin-right: 30px;
+    max-width: 22% !important;
+    padding-left: 0;
+}
+
+.card-body-inicio:hover {
+    transform: scale(1);
+    transition: 0.5s;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, .5);
+}
+
+.row-inicio {
+    place-content: center;
+    margin-bottom: 27px;
+    margin-top: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.card {
+    border-radius: 5px;
+    box-shadow: 7px 7px 13px 0 rgba(50, 50, 50, 0.22);
+    padding: 5px;
+    margin: 20px;
+    width: 400px !important;
+    transition: all 0.3s ease-out;
+    height: 90px;
+    left: -25px !important;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+.card p {
+    color: #a3a5ae;
+    font-size: 15px;
+}
+
+.image {
+    float: right;
+    max-width: 27px;
+    max-height: 34px;
+    margin-left: 344px;
+    margin-top: -25px;
+}
+
+.green {
+    border-left: 3px solid #003641;
+}
+

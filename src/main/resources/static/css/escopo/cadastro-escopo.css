@@ -1,0 +1,42 @@
+.container-escopo{
+padding-top: 45px;
+margin-left: 19%;
+margin-right: 10%;
+font-size: small;
+}
+
+.form-escopo{
+width: 100% !important;
+}
+
+.lixo-escopo{
+text-align-last: center;
+}
+
+.tabela-escopo{
+margin-bottom: 497px;
+width: 96%;    
+}
+
+.botao-tabela-escopo{
+    margin-top: -26px;
+    float: right;
+}
+
+.lixo-escopo{
+text-align-last: center;
+}
+
+.like{
+    font-size: 15px;
+}
+
+.remove{
+    margin-left: 15px;
+    font-size: 15px;
+}
+
+.load-escopo{
+    text-align: center;
+    margin-top: -50px;
+}

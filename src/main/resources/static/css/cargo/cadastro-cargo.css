@@ -1,0 +1,22 @@
+#tabela-cargo{
+margin-bottom: 10%;
+margin-top: 5%;
+font-size: small;
+}
+
+.container-cargo{
+padding-top: 25px;
+margin-left: 19%;
+margin-right: 10%;
+}
+
+
+.lixo-cargo{
+text-align-last: center;
+}
+
+.load-cargo{
+    text-align: center;
+    margin-top: -50px;
+}
+

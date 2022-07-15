@@ -1,0 +1,49 @@
+<!doctype html>
+<!--suppress HtmlUnknownAttribute -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+<div style="display: flex;">
+    <div class="form-group-parecer" style="display: none">
+        <label class="titulo-cadastro-parecer" for="id" style="margin-top: 10px;">ID Parecer</label>
+        <input class="form-control" id="id" name="id" th:inline="text" th:value="${avaliacao.id}" type="text">
+    </div>
+
+
+    <div class="form-group-av-critica coluna-av-critica-pequena">
+        <label class="titulo-cadastro-av-critica" for="dtEmissaoRAC" style="width: auto;">Data de emissão do
+            RAC </label>
+        <input class="form-control text-area-av-critica" id="dtEmissaoRAC" name="dtEmissaoRAC"
+               ows="3" r required th:inline="text" th:value="${avaliacao.dtEmissaoRAC}" type="date">
+    </div>
+
+    <div class="form-group-av-critica coluna-av-critica-pequena">
+        <label class="titulo-cadastro-av-critica" for="dtEnvioRAC" style="width: auto;">Data de envio do RAC</label>
+        <input class="form-control text-area-av-critica" id="dtEnvioRAC" name="dtEnvioRAC"
+               required rows="3" th:inline="text" th:value="${avaliacao.dtEnvioRAC}" type="date">
+    </div>
+</div>
+
+<div class="form-group-av-critica coluna-av-critica" style="width: 1063px;">
+    <label class="titulo-cadastro-av-critica" for="avaliacao"
+           style="margin-top: 10px;">Avaliação crítica</label>
+    <textarea class="form-control text-area-av-critica" id="avaliacao" maxlength="1000"
+              name="avaliacao" rows="3" th:inline="text"
+              th:text="${avaliacao.avaliacao}"></textarea>
+</div>
+<div class="form-group-av-critica coluna-av-critica" style="width: 1063px;">
+    <label class="titulo-cadastro-av-critica" for="observacao"
+           style="margin-top: 10px;">Observação</label>
+    <textarea class="form-control text-area-av-critica" id="observacao" maxlength="1000"
+              name="observacao" rows="3" th:inline="text"
+              th:text="${avaliacao.observacao}"></textarea>
+</div>
+
+</body>
+</html>

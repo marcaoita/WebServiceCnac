@@ -1,0 +1,180 @@
+.titulo-cadastro-programacao {
+    color: #083642;
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 3px;
+    Font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.titulo-cadastro1 {
+    color: #083642;
+    font-size: 35px;
+}
+
+.botao-programacao {
+    vertical-align: bottom;
+    margin-bottom: -13px;
+}
+
+.titulo-tabelinha {
+    font-size: 12px;
+}
+
+.icone-configuracoes {
+    font-size: 9px;
+    margin-left: 13px;
+}
+
+.dias-atividades {
+    width: 194px;
+    margin-right: 0;
+    margin-left: 40px;
+}
+
+.container-alerta-botao {
+    display: inline-flex;
+    width: 980px;
+    place-content: center;
+}
+
+.coluna-programacao-editar {
+    width: 204px;
+    margin-right: 12px;
+}
+
+.atividades {
+    width: 1069px !important;
+}
+
+#limpaDatas {
+    background-color: #083642;
+    color: white;
+    padding: 4px;
+    margin-left: 173px;
+    font-size: 13px;
+    margin-top: -16px;
+    Font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+#limpaDatas:hover {
+    background-color: white;
+    color: #083642;
+    border: 1px solid #083642;
+}
+
+.container-programacao-conteudo {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.coluna-programacao-edicao1 {
+    width: 527px;
+    margin-right: 16px;
+    margin-left: 1px;
+}
+
+.coluna-programacao-edicao2 {
+    width: 526px;
+}
+
+.box-info-editar {
+    width: 1074px !important;
+    margin-left: -15px;
+}
+
+.dropdown-toggle {
+    height: 32px;
+    font-size: 13px;
+}
+
+.box-info-grid {
+    height: 55px !important;
+}
+
+.datas-edicao1 {
+    margin-left: -5px;
+    margin-right: 30px;
+    width: 511px;
+    margin-bottom: 1% !important;
+    margin-top: 1px;
+}
+
+.datas-edicao2 {
+    width: 520px;
+    height: 122px;
+    margin-top: 1px;
+}
+
+.titulo-cadastro-programacao1 {
+    color: #083642;
+    margin: 0;
+    font-size: 30px;
+}
+
+.alerta-csa1 {
+    width: max-content;
+    background: none;
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: 145px;
+    color: red;
+    margin-top: -19px;
+    margin-bottom: 5px;
+}
+
+.form-group-edicao {
+    margin-bottom: 1rem;
+    font-size: 13px;
+}
+
+.gerou-amostra {
+    margin-top: 0;
+    margin-bottom: 1px;
+    COLOR: #083642;
+    font-weight: 700;
+    Font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.check-box-amostra {
+    margin-left: 70px;
+}
+
+.form-check-label {
+    margin-top: 0 !important;
+}
+
+.modal-geracao-amostra {
+    width: 799px;
+    margin-left: -135px;
+}
+
+.forms-amostra {
+    flex-flow: row wrap;
+    align-items: center;
+    width: 850px;
+    margin-left: 30px;
+}
+
+.id-programacao {
+    margin-right: 116px;
+    margin-left: -9px;
+}
+
+.input-id {
+    height: 35px;
+    border-radius: 6px;
+    border: 1px solid #d1d3e2;
+}
+
+.select-amostra-gerada {
+    height: 35px;
+    width: 212px !important;
+}
+
+.titulo-amostra-gerada {
+    margin-top: -17px;
+}
+
+.itens-geracao-amostra {
+    margin-right: 15px;
+}

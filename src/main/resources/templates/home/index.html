@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:sec="http://www.w3.org/1999/xhtml">
+<link href="css/utils/sb-admin-2.css" rel="stylesheet">
+<link href="css/utils/sb-admin-2.min.css" rel="stylesheet">
+<link href="css/utils/estilo-geral.css" rel="stylesheet">
+<link href="css/plugins/bootstrap-select/bootstrap-select.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=0.8, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+
+    <title>CNAC - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+
+    <link href="css/templates/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!--
+To collect end-user usage analytics about your application,
+insert the following script into each page you want to track.
+Place this code immediately before the closing </head> tag,
+and before any other scripts. Your first data will appear
+automatically in just a few seconds.
+-->
+    <script type="text/javascript">
+        var appInsights = window.appInsights || function (a) {
+            function b(a) {
+                c[a] = function () {
+                    var b = arguments;
+                    c.queue.push(function () {
+                        c[a].apply(c, b)
+                    })
+                }
+            }
+
+            var c = {config: a}, d = document, e = window;
+            setTimeout(function () {
+                var b = d.createElement("script");
+                b.src = a.url || "https://az416426.vo.msecnd.net/scripts/a/ai.0.js", d.getElementsByTagName("script")[0].parentNode.appendChild(b)
+            });
+            try {
+                c.cookie = d.cookie
+            } catch (a) {
+            }
+            c.queue = [];
+            for (var f = ["Event", "Exception", "Metric", "PageView", "Trace", "Dependency"]; f.length;) b("track" + f.pop());
+            if (b("setAuthenticatedUserContext"), b("clearAuthenticatedUserContext"), b("startTrackEvent"), b("stopTrackEvent"), b("startTrackPage"), b("stopTrackPage"), b("flush"), !a.disableExceptionTracking) {
+                f = "onerror", b("_" + f);
+                var g = e[f];
+                e[f] = function (a, b, d, e, h) {
+                    var i = g && g(a, b, d, e, h);
+                    return !0 !== i && c["_" + f](a, b, d, e, h), i
+                }
+            }
+            return c
+        }({
+            instrumentationKey: "75e53f0e-013f-40b6-a6e1-f5adcce486b6"
+        });
+
+        window.appInsights = appInsights, appInsights.queue && 0 === appInsights.queue.length && appInsights.trackPageView();
+
+        appInsights.trackEvent("home");
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+
+<body id="page-top">
+<div id="wrapper">
+
+    <!-- Barra lateral -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+        style="z-index: 20;">
+
+        <!-- Barra do lado - Marca -->
+        <a class="sidebar-brand d-flex" style="margin-top: 3px;">
+            <div class="sidebar-brand-icon">
+            </div>
+            <div class="sidebar-brand-text sidebar-title mx-3"
+                 style="cursor: pointer;margin-top: 3px;">WEB SERVICE CNAC
+            </div>
+        </a>
+
+        <!-- Divisão -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Itens da barra do lado -->
+        <li class="nav-item active">
+            <a class="nav-link" onclick="carregar('inicio/index')" style="cursor: pointer;">
+                <em class="far fa-address-card"></em>
+                <span>Início</span></a>
+        </li>
+
+        <!-- Cadastro -->
+        <li class="nav-item">
+            <a aria-controls="collapseTwo" aria-expanded="true" class="nav-link collapsed" data-target="#collapseOne"
+               data-toggle="collapse" href="#">
+                <em class="far fa-clipboard"></em>
+                <span>Cadastro</span>
+            </a>
+            <div aria-labelledby="headingOne" class="collapse" data-parent="#accordionSidebar" id="collapseOne">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="#escopo" onclick="carregar('escopo/index')">Escopos</a>
+                    <a class="collapse-item" href="#atividade" onclick="carregar('atividade/index')">Atividades</a>
+                    <a class="collapse-item" href="#clientes" onclick="carregar('cliente/index')">Clientes</a>
+                    <a class="collapse-item" href="#colaboradores"
+                       onclick="carregar('colaborador/index')">Colaboradores</a>
+                    <a class="collapse-item" href="#cargos" onclick="carregar('cargo/index')">Cargos</a>
+                    <a class="collapse-item" href="#feriados" onclick="carregar('feriado/index')">Feriados</a>
+                    <a class="collapse-item" href="#ferias" onclick="carregar('programacao-lote/ferias-treinamento')">Férias</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Cronograma -->
+        <li class="nav-item">
+            <a aria-controls="collapseTwo" aria-expanded="true" class="nav-link collapsed" data-target="#collapseTwo"
+               data-toggle="collapse" href="#">
+                <em class="far fa-calendar-alt"></em>
+                <span>Cronograma</span>
+            </a>
+            <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionSidebar" id="collapseTwo">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" onclick="carregar('programacao-horizontal/index')"
+                       style="cursor:pointer;font-size: 12px;padding-left: 0;">Programação Horizontal</a>
+                    <a class="collapse-item" onclick="carregar('programacao-vertical/index')"
+                       style="cursor:pointer;font-size: 12px;padding-left: 0;">Programação Vertical</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Relatório -->
+        <li class="nav-item">
+            <a aria-controls="collapseRelatorio" aria-expanded="true" class="nav-link collapsed"
+               data-target="#collapseRelatorio"
+               data-toggle="collapse" href="#">
+                <em class="fas fa-clipboard-list"></em>
+                <span>Relatórios</span>
+            </a>
+            <div aria-labelledby="headingUtilities" class="collapse" data-parent="#accordionSidebar"
+                 id="collapseRelatorio">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" onclick="carregar('relatorios/clientes-sem-programacao')"
+                       style="cursor:pointer;font-size: 11px;padding-left: 0;">Clientes sem programação</a>
+                    <a class="collapse-item" onclick="carregar('controle-geracao-amostra/index')"
+                       style="cursor:pointer;font-size: 11px;padding-left: 0;">Controle de Amostras</a>
+                    <a class="collapse-item" onclick="carregar('relatorios/relatorio-csa')"
+                       style="cursor:pointer;font-size: 11px;padding-left: 0;">Relatorio CSA</a>
+
+                </div>
+            </div>
+        </li>
+
+        <!-- Monitoramento -->
+        <li class="nav-item">
+            <a aria-controls="collapseMonitoramento" aria-expanded="true" class="nav-link collapsed"
+               data-target="#collapseMonitoramento"
+               data-toggle="collapse" href="#">
+                <em class="fas fa-tasks"></em>
+                <span>Monitoramento</span>
+            </a>
+            <div aria-labelledby="headingUtilities" class="collapse" data-parent="#accordionSidebar"
+                 id="collapseMonitoramento">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" onclick="carregar('monitoramento/av-critica')"
+                       style="cursor:pointer;font-size: 11px;padding-left: 0;">Auditoria Cooperativa</a>
+                    <a class="collapse-item" onclick="carregar('parecer/index')"
+                       style="cursor:pointer;font-size: 11px;padding-left: 0;">Auditoria Externa</a>
+                    <a class="collapse-item" onclick="carregar('monitoramento/catalogacao')"
+                       style="cursor:pointer;font-size: 11px;padding-left: 0;">Catalogação</a>
+                    <a class="collapse-item" onclick="carregar('monitoramento/graficos')"
+                       style="cursor:pointer;font-size: 11px;padding-left: 0;">Gráficos</a>
+                    <a class="collapse-item" onclick="carregar('monitoramento/monitoramento-atividade')"
+                       style="cursor:pointer;font-size: 11px;padding-left: 0;">Monitoramento Atividades</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Importações -->
+
+        <!-- Obrigações Acessórias -->
+        <li class="nav-item">
+            <a aria-controls="collapseUtilities" aria-expanded="true" class="nav-link collapsed"
+               data-target="#collapseUtilities"
+               data-toggle="collapse" href="#">
+                <em class="fas fa-book"></em>
+                <span>Obrigações Acessórias</span>
+            </a>
+            <div aria-labelledby="headingUtilities" class="collapse" data-parent="#accordionSidebar"
+                 id="collapseUtilities">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" onclick="carregar('obrigacoes-acessorias/index')" style="cursor:pointer;">7110</a>
+                    <a class="collapse-item" href="../obrigacoes/bcb/7120.html" style="cursor:pointer;">7120</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Configurações -->
+        <li class="nav-item">
+            <a aria-controls="collapThree" aria-expanded="true" class="nav-link collapsed" data-target="#collapThree"
+               data-toggle="collapse" href="#">
+                <em class="fas fa-cog"></em>
+                <span>Configurações</span>
+            </a>
+            <div aria-labelledby="headingUtilities" class="collapse" data-parent="#accordionSidebar"
+                 id="collapThree">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="#configuracao"
+                       onclick="carregar('configuracao/index')">Parâmetros</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divisão -->
+        <hr class="sidebar-divider">
+
+
+        <!-- Logo -->
+        <div class="sidebar-card d-none d-lg-flex">
+            <img alt="..." class="sidebar-card-illustration mb-2" src="img/logos/cnac-horizontal.png">
+        </div>
+
+    </ul>
+    <!-- Final da barra lateral -->
+
+    <!-- Conteúdo -->
+    <div class="d-flex flex-column" id="content-wrapper"></div>
+    <div class="dashboard-contenier" id="content">
+
+        <!-- Barra no topo -->
+        <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow"
+             style="background-color:#003641; position: fixed; width: -webkit-fill-available; margin-left: 176px; z-index: 500; height: 45px;">
+
+
+            <!-- Topbar Pesquisa -->
+            <form
+                    class="d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search"
+                    style="margin-left: 27%;">
+                <div class="input-group" style="width:550px; ">
+                    <input aria-describedby="basic-addon2" aria-label="Search"
+                           class="form-control bg-light border-0 small"
+                           id="txtBusca"
+                           placeholder="Procure por cliente, auditor..." style="height: 38px;" type="text">
+                </div>
+            </form>
+
+            <!-- Navbar -->
+            <ul class="navbar-nav ml-auto">
+
+                <!-- Usuário-->
+                <li class="nav-item dropdown no-arrow">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                       data-toggle="dropdown"
+                       href="#" id="userDropdown" role="button">
+                        <span class="mr-2 d-none d-lg-inline small" style="color:white;">[[${nome}]]</span>
+                        <img alt="imagem-profile"
+                             class="img-profile rounded-circle" src="img/utilitarios/undraw_profile.svg">
+                    </a>
+                    <!-- Dropdown - Usuário -->
+                    <div aria-labelledby="userDropdown"
+                         class="dropdown-menu dropdown-menu-right shadow animated--grow-in" style="top: 56px;">
+                        <a class="dropdown-item" href="#">
+                            <em class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></em>
+                            Perfil
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <em class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></em>
+                            Configurações
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" data-toggle="modal" href="/logout">
+
+                            <form class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" form-method="post"
+                                  th:action="@{/logout}">
+                                <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm"
+                                        sec:authorize="isAuthenticated()" type="submit">Logout
+                                </button>
+                            </form>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- Final da barra do topo -->
+
+        <!-- Alerta de novidades -->
+        <div class="container-box-novidades" style="visibility: hidden;margin-top: -10px;" id="avisos">
+            <em class="fas fa-info-circle icone-info"></em>
+            <p class="texto-avisos" style=" margin-top: 0;">
+                Novidade! A programação horizontal está mais simples e com a possibilidade de escolher as colunas.
+                Clique <sapn class="link" onclick="carregar('novidades/saiba-mais')">aqui</sapn>
+                e saiba mais.
+            </p>
+        </div>
+
+
+        <!-- Começo do conteúdo da página -->
+        <div id="conteudo">
+
+
+        </div>
+
+        <div id="recebeModal">
+
+
+        </div>
+
+
+    </div>
+    <!-- final do conteúdo da página -->
+
+    <!-- Baixo -->
+    <footer class="sticky-footer bg-white"></footer>
+
+    <!-- Final da parte de baixo -->
+
+</div>
+
+<!-- End of Page Wrapper -->
+
+<!-- Scroll das opções-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <em class="fas fa-angle-up"></em>
+</a>
+
+<!-- Logout de Usuário-->
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="logoutModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sair?</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Aperte "Sair" para confirmar</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                <a class="btn btn-primary" href="../utils/login.html">Sair</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BootStrap -->
+<script src="js/framewoks/bootstrap/bootstrap.bundle.min.js"></script>
+
+<script>
+    function carregar(pagina) {
+        $("#conteudo").load(pagina, function (response, status, xhr) {
+            if (xhr.status === 403)
+                $("#conteudo").load("/semAcesso")
+        });
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+        $("#conteudo").load("inicio/index");
+        $('[data-toggle="tooltip"]').tooltip({boundary: 'window'});
+
+    });
+
+
+</script>
+
+</body>
+
+<!-- (Scripts necessário para o selectPicker) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+
+<!-- Plugin Tabela -->
+<script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/extensions/export/bootstrap-table-export.min.js"></script>
+<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/utils/sb-admin-2.min.js"></script>
+
+<!-- Script de busca-->
+<script src="js/utils/buscaGenericaTable.js"></script>
+
+<!-- Bootstrap Select -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<!-- Gráficos -->
+<script crossorigin="anonymous"
+        integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
+        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha512-5m2r+g00HDHnhXQDbRLAfZBwPpPCaK+wPLV6lm8VQ+09ilGdHfXV7IVyKPkLOTfi4vTTUVJnz7ELs7cA87/GMA=="
+        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+</html>

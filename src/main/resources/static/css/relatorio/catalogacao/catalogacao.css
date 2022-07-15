@@ -1,0 +1,79 @@
+#conteudo{
+    width: 1510px !important;
+}
+
+.calendar {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 14px;
+    align-items: center;
+    padding-left: -25px;
+}
+
+.head-catalogacao{
+    position: sticky;
+    top: 4px;
+    z-index: 2;
+    background-color: white;
+    margin-left: -14px;
+}
+
+.container-catalogacao{
+    padding-top: 32px;
+    margin-left: 210px;
+}
+
+.titulo-catalogacao{
+    font-size: 30px;
+    position:sticky;
+    margin-bottom: 13px;
+    left: 195px;
+    color: #083642;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.calendar {
+    margin-left: -35px;
+    margin-bottom:96px !important;
+}
+
+.indicator1 {
+    position:sticky;
+    left: 190px;
+}
+
+.indicator2 {
+    margin-left: 40px;
+    position:sticky;
+    left: 458px;
+}
+
+.indicator3 {
+    margin-left: 55px;
+    position:sticky;
+    left: 726px;
+}
+
+.indicator4 {
+    margin-left: 60px;
+    position:sticky;
+    left: 1015px;
+}
+
+.indicator5 {
+    margin-left: 60px;
+    position:sticky;
+    left: 1300px;
+}
+
+.tBodyCsP{
+    background: white;
+    color: black;
+}
+
+.selecionar-filtros{
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}

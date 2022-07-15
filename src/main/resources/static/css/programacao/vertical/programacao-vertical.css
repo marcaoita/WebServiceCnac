@@ -1,0 +1,431 @@
+.dashboard-container {
+    width: 6000px;
+}
+
+.intervalos {
+    border: solid 1px;
+    border-radius: 20px;
+}
+
+.divider-prog-vertical {
+    margin-left: 31px;
+    width: auto;
+}
+
+h5 {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    font-family: az_ea_font, 'Segoe UI', az_font, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+
+}
+
+.nome-colaborador {
+    position: sticky;
+    top: 170px;
+    z-index: 8;
+    background-color: white;
+    border-radius: 8px;
+    color: black;
+}
+
+.text-colab {
+    position: sticky;
+    top: 137px;
+}
+
+.titulo-dashboard {
+    font-size: 29px;
+    position: sticky;
+    left: 195px;
+    color: #083642;
+    text-align: center;
+    font-family: az_ea_font, 'Segoe UI', az_font, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.indicator1 {
+    position: sticky;
+    left: 190px;
+}
+
+.indicator2 {
+    position: sticky;
+    left: 435px;
+}
+
+.indicator3 {
+    position: sticky;
+    left: 650px;
+    margin-left: 0 !important;
+}
+
+.indicator4 {
+    position: sticky;
+    left: 865px;
+    margin-left: 0 !important;
+}
+
+.indicator5 {
+    position: sticky;
+    left: 1085px;
+    margin-left: 0 !important;
+}
+
+.indicator6 {
+    position: sticky;
+    left: 1305px;
+    margin-left: 0 !important;
+}
+
+.indicator7 {
+    position: sticky;
+    left: 1530px;
+    margin-left: 0 !important;
+}
+
+
+.grupo-lista-programacao {
+    padding: 1px;
+    font-size: 12px;
+    background: #f7f7f7;
+    text-align: center;
+    color: #777777;
+}
+
+.marginTop {
+    margin-top: 0;
+}
+
+.totalizador {
+    background: #e4e0e0;
+}
+
+.head-dashboard {
+    width: 7490px;
+}
+
+.card-header-programacao {
+    padding: 5px;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7f7;
+    color: #777777;
+    border: none;
+}
+
+.intervalos:hover {
+    transform: scale(1);
+    transition: 0.5s;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, .5);
+}
+
+.etiquetas {
+    margin-top: 10px;
+    background: black;
+    color: white;
+    max-width: max-content;
+    border-radius: 5px;
+    min-width: 55px;
+    margin-left: 4px;
+}
+
+.intervalos:hover {
+    background-color: #003641c7;
+    border-color: #e6fbeb;
+}
+
+#datas2 {
+    z-index: 6 !important;
+    left: 182px !important;
+}
+
+#datas {
+    border: none !important;
+    box-shadow: none !important;
+    color: #ffffff00 !important;
+}
+
+.calendar {
+    display: flex;
+    width: auto !important;
+    margin-bottom: 20px;
+    margin-top: 25px;
+    align-items: center;
+    padding-left: -25px;
+}
+
+.tool-bar-icons {
+    margin-bottom: 3px;
+    align-self: center;
+}
+
+#titulo-datas {
+    margin-bottom: 35px;
+    font-size: 15px;
+}
+
+.tool-bar {
+    display: grid;
+    margin-top: 14px;
+    color: black;
+    height: 29px;
+    font-size: 13px;
+    margin-left: 6px;
+    grid-template-columns: 98px 91px 142px 115px 100px;
+    grid-template-rows: 1fr;
+    gap: 0 0;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "criar relogio configuracoes atualizar exportar";
+}
+
+.criar {
+    grid-area: criar;
+    display: flex;
+    cursor: pointer;
+    place-content: center;
+    align-self: center;
+    height: 27px;
+    position: sticky;
+    left: 171px;
+}
+
+.relogio {
+    grid-area: relogio;
+    display: flex;
+    cursor: pointer;
+    place-content: center;
+    align-self: center;
+    height: 27px;
+    position: sticky;
+    left: 265px;
+}
+
+.configuracoes {
+    grid-area: configuracoes;
+    display: flex;
+    cursor: pointer;
+    place-content: center;
+    align-self: center;
+    height: 27px;
+    position: sticky;
+    left: 360px;
+}
+
+.atualizar {
+    grid-area: atualizar;
+    display: flex;
+    cursor: pointer;
+    place-content: center;
+    align-self: center;
+    height: 27px;
+    position: sticky;
+    left: 499px;
+}
+
+.exportar {
+    grid-area: exportar;
+    display: flex;
+    cursor: pointer;
+    place-content: center;
+    align-self: center;
+    height: 27px;
+    position: sticky;
+    left: 614px;
+}
+
+.relogio:hover, .criar:hover, .configuracoes:hover, .atualizar:hover, .exportar:hover {
+    background: #f2f2f2;
+}
+
+.tool-bar i {
+    margin-right: 5px
+}
+
+#dataCronograma {
+    width: 171px;
+    height: 34px;
+    margin-left: 138px;
+    border-color: #003641;
+
+}
+
+main {
+    max-width: max-content;
+    margin: 3em auto 0 auto;
+    padding: 1.5em;
+    background-color: #fff;
+    /*noinspection CssUnresolvedCustomProperty*/
+    border: 2px solid var(--blue-grey-200);
+    border-radius: 8px;
+}
+
+.indicator {
+    display: inline-flex;
+}
+
+.button-indicator {
+    /*noinspection CssUnresolvedCustomProperty*/
+    color: var(--blue-grey-700);
+    font-weight: 500;
+    padding-left: 70px;
+}
+
+.infos-colaboradores {
+    display: inline-flex;
+    text-align: center;
+}
+
+/*noinspection ALL*/
+.container-dash-board {
+    position: sticky;
+    width: -webkit-fill-available;
+    margin-left: 160px;
+    top: 35px;
+    z-index: 10;
+    background-color: white;
+    padding-top: 15px;
+    height: 135px;
+}
+
+.datas {
+    width: 100px;
+    display: grid;
+    grid-template-columns: repeat(1, 150px);
+    font-size: 12px;
+}
+
+.colaboradores {
+    margin-top: 10px;
+}
+
+.colaboradores:hover {
+    margin-top: 10px;
+}
+
+
+.calendar-day {
+    font-size: 14px;
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    background: none;
+    height: 21px;
+    border-bottom: 1px solid #8080802e;
+    margin-left: 13px;
+    width: 5800px;
+}
+
+.calendar-day:hover {
+    background: gray;
+}
+
+.calendar-day2 {
+    font-size: 14px;
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    height: 21px;
+    margin-left: 13px;
+}
+
+.invisivel {
+    visibility: hidden;
+}
+
+
+/*
+.calendar-day:hover{
+display: -webkit-inline-box;
+margin-left: 1%;
+z-index: 1;
+width: 6310px;
+cursor:pointer;
+margin-left:23px;
+border-bottom: 1px solid black;
+}
+*/
+
+
+.titulo-dashboard {
+    font-size: 30px;
+    position: sticky;
+    left: 195px;
+    color: #083642;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.listColaboradores {
+    width: max-content;
+}
+
+.listColaboradores > * {
+    font-size: 11px;
+    color: black;
+    box-shadow: 2px 2px 20px rgb(0 0 0 / 8%);
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-align: center;
+    border: 1px solid black;
+    margin-right: 10px;
+    border-radius: 8px;
+    font-family: az_ea_font, 'Segoe UI', az_font, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Dates */
+.date-grid {
+    margin-top: 0.5em;
+}
+
+/* Positioning the first day */
+.date-grid button:first-child {
+    grid-column: 8;
+}
+
+.date-grid button {
+    position: relative;
+    border: 0;
+    width: 4.5ch;
+    height: 4.5ch;
+    border-radius: 50%;
+    background-color: transparent;
+    /*noinspection CssUnresolvedCustomProperty*/
+    color: var(--blue-grey-600);
+}
+
+.date-grid button:hover,
+.date-grid button:focus {
+    outline: none;
+    /*noinspection CssUnresolvedCustomProperty*/
+    background-color: var(--blue-grey-050);
+    /*noinspection CssUnresolvedCustomProperty*/
+    color: var(--blue-grey-700);
+}
+
+.date-grid button:active,
+.date-grid button.is-selected {
+    /*noinspection CssUnresolvedCustomProperty*/
+    background-color: var(--teal-100);
+    /*noinspection CssUnresolvedCustomProperty*/
+    color: var(--teal-900);
+}
+
+.cartao {
+    border: 2px solid;
+    padding: 20px;
+    width: 300px;
+    resize: vertical;
+    overflow: auto;
+}
+
+.load-prog-vertical {
+    margin-top: -51px;
+    margin-bottom: 1px;
+    margin-left: 8%;
+}
+
+#conteudo {
+    width: max-content !important;
+}

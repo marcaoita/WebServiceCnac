@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+<link href="css/programacao/vertical/programacao-vertical.css" rel="stylesheet">
+<link href="css/plugins/bootstrap-select/bootstrap-select.css" rel="stylesheet">
+<link href="css/utils/estilo-geral.css" rel="stylesheet">
+<link href="css/programacao/vertical/tela-programacao.css" rel="stylesheet">
+<title>Dashboard</title>
+</head>
+<body>
+<div class="container-dash-board">
+    <div class="head-dashboard">
+        <div class="month-indicator">
+            <time datetime="2020-02" class ="titulo-dashboard"> Programação Vertical </time>
+            <div class="load load-prog-vertical">
+                <img src="img/utilitarios/Spinner-3.gif" style="width: 50px;" alt="carregando" >
+            </div>
+        </div>
+        <div class="tool-bar esconder-sem-espaco">
+        </div>
+        <hr class="sidebar-divider my-0 divider-prog-vertical">
+        <div class="calendar">
+        
+            <div class="indicator1">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Colaboradores por Escritório</label>
+                        <select class="select-mult" title="Selecione" id="colaboradorEscritorio" multiple
+                                data-actions-box="true"
+                                onChange="loadList()" data-style="btn-primary">
+                                <option value="SP">São Paulo</option>
+                                <option value="BSB">Brasília</option>
+                                <option value="BH">Belo Horizonte</option>
+                                <option value="CSA">CSA</option>
+                                <option value="TI">TI</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div class="indicator2">
+                <form method="post">
+                    <label class="descritivo-filtro">Tipo de Serviço</label>
+                    <select class="select-mult" data-actions-box="true" title="Selecione"
+                            data-style="btn-primary" id="tipoServico" data-width="190px"
+                            multiple onChange="loadList()">
+                        <option>AC</option>
+                        <option>AE</option>
+                        <option>ES</option>
+                        <option>TI</option>
+                        <option>CSA</option>
+                        <option>TREINAMENTO (TR)</option>
+                        <option value="FERIAS">FÉRIAS (FR)</option>
+                        <option value="LICENCA">LICENÇAS (LI)</option>
+                        <option value="COMPENSACAO">COMPENSAÇÃO (CP)</option>
+                        <option>ACOMPANHAMENTO (ACM)</option>
+                        <option>RESERVA (RE)</option>
+                    </select>
+                </form>
+            </div>
+            <div class="indicator3">
+                <form method="post">
+                    <label class="descritivo-filtro">Ano Base</label>
+                    <select class="select-mult" data-actions-box="true" title="Selecione" id="anoBase"
+                            onChange="onChangeAnoBase()" data-width="190px"
+                            data-style="btn-primary">
+                        <option th:each="ano : ${anoBase}"
+                                th:selected="${ano.anoBase} == ${#dates.year(#dates.createNow())}"
+                                th:utext="${ano.anoBase}"
+                                th:value="${ano.anoBase}"></option>
+                    </select>
+                </form>
+            </div>
+            <div class="indicator4">
+                <form method="post">
+                    <label class="descritivo-filtro">Gestores</label>
+                    <select  onChange="loadList()" class="select-mult" title="Selecione" multiple data-actions-box="true" id="gestoresFilter" name="test"
+                            data-style="btn-primary" data-width="190px">
+                        <option disabled>Diretores</option>
+                        <option th:each="d : ${diretores}"
+                                th:utext="${d.getNome()}"
+                                th:value="${d.getCpfCnpj()}"></option>
+                        <option data-divider="true"></option>
+                        <option disabled>Gerentes</option>
+                        <option th:each="g : ${gerentes}"
+                                th:utext="${g.getNome()}"
+                                th:value="${g.getCpfCnpj()}"></option>
+                        <option data-divider="true"></option>
+                        <option disabled>Supervisores</option>
+                        <option th:each="s : ${supervisores}"
+                                th:utext="${s.getNome()}"
+                                th:value="${s.getCpfCnpj()}"></option>
+                    </select>
+                </form>
+            </div>
+            <div class="indicator5">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Áreas</label>
+                        <select class="select-mult" title="Selecione" id="areas" multiple
+                                data-actions-box="true" data-width="190px"
+                                onChange="loadList()" data-style="btn-primary">
+                            <option>Auditoria</option>
+                            <option>Supervisão</option>
+                            <option>Gerência</option>
+                            <option>Qualidade</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div class="indicator6">
+                <form method="post">
+                    <label class="descritivo-filtro">Cargos</label>
+                    <select class="select-mult" onChange="loadList()" data-actions-box="true" title="Selecione"
+                            data-style="btn-primary" id="cargos" data-width="190px"
+                            multiple >
+                        <option th:each="c : ${cargos}"
+                        th:utext="${c.cargoDesc}"
+                        th:value="${c.cargoDesc}"></option>
+                    </select>
+                </form>
+            </div>
+            <div class="indicator7">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Programações por Escritórios</label>
+                        <select class="select-mult" title="Selecione" id="selectOffice" multiple
+                                data-actions-box="true"
+                                onChange="loadList()" data-style="btn-primary">
+                                <option value="SP">São Paulo</option>
+                                <option value="BSB">Brasília</option>
+                                <option value="BH">Belo Horizonte</option>
+                                <option value="TI">TI</option>
+                                <option value="CSA">CSA</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+<div class="listColaboradores" id="colaboradoresDashBoard" role="main">
+<div style="border: none;box-shadow: none;color: white;"></div>
+
+
+</div>
+
+
+
+<script src="js/programacao/vertical/construtor-estrutura.js"></Script>
+<script src="js/programacao/vertical/eventos.js"></Script>
+<script src="js/programacao/vertical/gera-colunas-colaboradores.js"></Script>
+<script src="js/programacao/vertical/gerador-datas.js"></Script>
+<script src="js/programacao/vertical/monta-blocos.js"></Script>
+<script src="js/programacao/vertical/send-post.js"></Script>
+<script src="js/programacao/vertical/utilitarios.js"></Script>
+<script src="js/generic/load-modal.js"></Script>
+<script src="js/generic/send-delete.js"></Script>
+<script src="js/generic/get-filters.js"></script>
+
+<script th:inline="javascript">
+
+let anoBase = [[${anoBasePadrao}]];
+
+montaProgVertical(anoBase);
+
+</script>
+
+
+<script>
+    $(document).ready(function(){
+        $('.select-mult').selectpicker();
+  });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+    $("#datas").click(function() {
+        $(this).removeClass('datas-index');
+    });
+});
+</script>
+
+
+
+

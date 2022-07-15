@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="pt-br" xmlns:th="https://www.thyneleaf.org">
+<head>
+    <title>Avaliação Crítica</title>
+    <link href="css/utils/estilo-geral.css" rel="stylesheet">
+    <link href="css/avaliacao-critica/avaliacao-critica.css" rel="stylesheet">
+</head>
+
+<body>
+<div aria-hidden="true" aria-labelledby="myExtraLargeModalLabel" class="modal fade bd-example-modal-xl" id="myModal"
+     role="dialog">
+    <div class="modal-dialog modal-xl" style="max-width: 1120px;">
+        <div class="modal-content">
+            <div class="modal-header" style="padding-bottom: 5px;">
+                <h1 class="titulo-av-critica" id="cliente" th:attr="cnpj=${cliente.cnpjCliente}" th:inline="text">
+                    Avaliação Crítica
+                </h1>
+
+                <button aria-label="Fechar" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding:12px;">
+                <div class="container-av-critica-conteudo">
+                    <div class="alert alert-secondary programacao-titulo" id="cli" role="alert"
+                         th:attr="cliente=${cliente}">
+                        <div class="titulo-coop">[[${cliente.numCoop}]] - [[${cliente.siglaCoop}]]</div>
+                    </div>
+                    <div class="container-head-av-critica">
+                        <div>
+                            <div class="card" style="width: 153px;">
+                                <div class="card-header card-header-av-critica">
+                                    Avaliações Necessárias
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item grupo-lista-programacao">[[${cliente.getQuantAvaliacoes()}]]</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card" style="width: 172px;">
+                                <div class="card-header card-header-av-critica">
+                                    Avaliações Pendentes
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item grupo-lista-programacao">
+                                        [[${cliente.getQuantAvaliacoes()} - ${cliente.getQuantAvaliacoesPreenchidas()}]]
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card" style="width: 153px;">
+                                <div class="card-header card-header-av-critica">
+                                    Status
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item grupo-lista-programacao">
+                                        [[${cliente.statusAvaliacoes()}]]
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form action="/avaliacao/add" id="myform" method="post" th:object="${avaliacaoCriticaDTO}"
+                          url="monitoramento/relatorio">
+                        <div class="form-row align-items-center">
+                            <div class="form-group-av-critica coluna-av-critica-wrap" style="margin-right:0;">
+                                <div style="display: flex;width: 100%;justify-content: center;">
+                                    <div class="form-row form-group-av-critica" id="errescopoDisp">
+                                        <div class="form-group container-av-critica1">
+                                            <select class="form-control select-escopo-av" id="escopo" name="escopo"
+                                                    onchange="loadAvaliacao()">
+                                                <option class="bs-title-option" value="selecione">
+                                                    Selecione um escopo
+                                                </option>
+                                            <option
+                                                    th:each="atividade: ${atividades}"
+                                                    th:utext="${atividade.escopo.numEscopo} + ' ' + ${atividade.escopo.tipoEscopo}"
+                                                    th:value="${atividade.escopo.numEscopo}"
+                                                    th:selected="(${atividade.escopo.numEscopo} == ${escopo})"
+                                            ></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div id="filters" style="display: none" th:attr="anoBase=${anoBase}">
+                                    <input id="cnpj" name="cnpj" th:value="${cliente.cnpjCliente}" label="cnpj">
+                                    <input id="anoBase" name="anoBase" th:value="${anoBase}" label="anobase">
+                                </div>
+                                <div id="avaliacoes">
+                                </div>
+                                <div style="text-align: center;">
+                                    <button class="btn btn-dark" style="margin-top: 1%;" type="submit">Salvar
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/generic/send-entity.js"></script>
+<script src="js/avaliacao/funcoes.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.select-mult1').selectpicker();
+        loadAvaliacao();
+    });
+</script>
+</body>

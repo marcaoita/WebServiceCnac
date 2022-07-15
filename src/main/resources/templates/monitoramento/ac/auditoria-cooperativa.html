@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<link href="css/graficos/graficos.css" rel="stylesheet">
+<link href="css/utils/estilo-geral.css" rel="stylesheet">
+<head>
+    <title>Auditoria Cooperativa</title>
+</head>
+<body>
+<div>
+    <div class="container-avaliacao-critica">
+        <h2 class="titulo-graficos">Auditoria Cooperativa</h2>
+        <div class="load" style="margin-bottom: -31px;">
+            <img src="img/utilitarios/Spinner-3.gif" style="width: 50px; margin-left: 40%; margin-top:-7%;" alt="carregando">
+        </div>
+        <hr class="sidebar-divider" style="margin-bottom: 30px;margin-top: -7px;">
+
+        <div class="selecionar-filtros">
+        <div class="selecoes">
+            <form method="post">
+                <label class="descritivo-filtro">Ano Base</label>
+                <select class="select-mult campos" data-actions-box="true" data-style="btn-primary" id="anoBase"
+                        onChange=""
+                        title="Selecione">>
+                    <option th:each="ano : ${anos}"
+                            th:selected="${ano} == ${#dates.year(#dates.createNow())}"
+                            th:utext="${ano}">
+                        </option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="indicatore3" style="z-index: 1; display: none">
+                <form method="post">
+                    <label class="descritivo-filtro">Tipo de Serviço</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary" data-width="150px"
+                            id="tipoServico" multiple onChange="loadList('monitoramento/relatorio')"
+                            title="Selecione">
+                        <option selected>AC</option>
+                    </select>
+                </form>
+            </div>
+
+
+            <div class="selecoes">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Escritórios</label>
+                        <select class="select-mult campos" data-actions-box="true" data-style="btn-primary"
+                                data-width="213px" id="colaboradorEscritorio" multiple
+                                onChange="loadList('monitoramento/relatorio')"
+                                title="Selecione">
+                            <option value="SP">São Paulo</option>
+                            <option value="BSB">Brasília</option>
+                            <option value="BH">Belo Horizonte</option>
+                            <option value="CSA">CSA</option>
+                            <option value="TI">TI</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <div class="selecoes">
+                <div class="selectBox">
+                    <form method="post">
+                        <label class="descritivo-filtro">Status RAC</label>
+                        <select class="select-mult campos" data-actions-box="true" data-style="btn-primary"
+                                data-width="213px" id="status" multiple
+                                onChange="loadList('monitoramento/relatorio')"
+                                title="Selecione">
+                            <option>Em dia</option>
+                            <option>Atrasado</option>
+                            <option>Entregue com atraso</option>
+                            <option>Entregue</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <div class="selecoes">
+                <div class="selectBox">
+                <form method="post">
+                    <label class="descritivo-filtro">Gestores</label>
+                    <select class="select-mult" data-actions-box="true" data-style="btn-primary"
+                            data-width="150px"
+                            id="gestoresFilter" multiple name="test" onChange="loadList('monitoramento/relatorio')"
+                            title="Selecione">
+                        <option disabled>Gerentes</option>
+                        <option th:each="g : ${gerentes}" th:utext="${g.getNome()}" th:value="${g.getCpfCnpj()}">
+                        </option>
+                    </select>
+                </form>
+                </div>
+            </div>
+
+
+            <div class="selecoes">
+                <form method="post">
+                    <label class="descritivo-filtro">Mês</label>
+                    <select class="select-mult campos" data-actions-box="true" data-style="btn-primary"
+                            data-width="150px"
+                            id="mes"
+                            multiple onChange="loadList('monitoramento/relatorio')"
+                            title="Selecione">
+                        <option value="1">Janeiro</option>
+                        <option value="2">Fevereiro</option>
+                        <option value="3">Março</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Maio</option>
+                        <option value="6">Junho</option>
+                        <option value="7">Julho</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+                    </select>
+                </form>
+            </div>
+            <div class="campos">
+                <button id="btnExport" style="margin-top: 5px;margin-left: 0;">Exportar Tabela em Excel</button>
+            </div>
+        </div>
+        <div class="contaier-parecer-card" style="margin-left: 0;">
+            <div class="card-body" style="font-size: 12px;padding: 0;">
+                <div class="table-responsive fixTableHead">
+                    <table aria-label="tabela-dados" class="table display tablesorter" data-toggle="table"
+                           data-toolbar="#toolbar"
+                           id="dados" style="color: black;">
+                        <thead style="background: #003641;color:white">
+                        <tr>
+                            <th class="centro" data-field="codCentral" data-sortable="true" data-width="70"
+                                scope="col"> Número Central <em class="fas fa-sort"></em></th>
+                            <th class="centro" data-field="numCoop" data-sortable="true" data-width="76"
+                                scope="col"> Número Cooperativa <em class="fas fa-sort"></em></th>
+                            <th data-field="siglaCoop" data-sortable="true" data-width="85" scope="col">Sigla
+                                Cooperativa
+                                <em class="fas fa-sort"></em></th>
+                            <th data-field="numAudit" data-sortable="true" data-width="85" scope="col">Número auditoria
+                                (TA)
+                                <em class="fas fa-sort"></em></th>
+                            <th class="centro" data-field="escritorio" data-sortable="true" data-width="70" scope="col">
+                                Escritório
+                                <em class="fas fa-sort"></em></th>
+                            <th class="centro" data-field="tipoServico" data-sortable="true" data-width="70"
+                                scope="col">Tipo Serviço
+                                <em class="fas fa-sort"></em></th>
+                            <th class="centro" data-field="escopo" data-sortable="true" data-width="85" scope="col">
+                                Escopo
+                                <em class="fas fa-sort"></em></th>
+                            <th class="centro" data-field="dtMaxEmiRac" data-sortable="true" data-width="80"
+                            data-formatter="dataAtualFormatada"
+                            scope="col">Data Limite Emissão do RAC <em
+                                class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="statusRac" data-sortable="true" data-width="80" scope="col">Status do
+                            RAC <em class="fas fa-sort"></em></th>
+                        <th data-field="avaliacao" data-sortable="true" data-width="400" scope="col">
+                            Avaliação Crítica <em class="fas fa-sort"></em></th>
+                            <th data-field="gestores" data-sortable="true" data-width="140" scope="col">
+                                Gerente <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="emissaoRac" data-sortable="true" data-width="105" data-formatter="dataAtualFormatada"
+                            scope="col">Data de emissão do RAC <em class="fas fa-sort"></em></th>
+                        <th class="centro" data-field="envioRAC" data-sortable="true" data-width="105" data-formatter="dataAtualFormatada"
+                            scope="col">Data de envio do RAC <em class="fas fa-sort"></em></th>
+
+                            <th class="centro dataRAC" data-field="status" data-sortable="true" data-width="100"
+                                scope="col">
+                                Status Team Audit <em class="fas fa-sort"></em></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="js/generic/monta-tabela.js"></script>
+<script src="js/generic/send-post.js"></script>
+<script src="js/generic/get-filters.js"></script>
+<script src="js/generic/load-modal.js"></script>
+<script src="js/generic/eventBootstrapTable.js"></script>
+<script src="js/monitoramento/funcoes.js"></script>
+<script src="js/utils/funcoesUteis.js"></script>
+<script src="js/plugins/table2excel/jquery.table2excel.js"></script>
+<script src="js/utils/exportTableToExcel.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.select-mult').selectpicker();
+        loadList("monitoramento/relatorio");
+
+
+        $('#btnExport').on('click', function (e) {
+            e.preventDefault();
+            Export('dados', 'monitoramento-atividade');
+        });
+
+    });
+
+    $(function () {
+        $('#dados').bootstrapTable()
+    })
+</script>
